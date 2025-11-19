@@ -202,7 +202,6 @@ public class Main {
 
 
 
-
         System.out.println("introduce el valor P");
         int P = sc.nextInt();
         System.out.println("introduce el valor Q");

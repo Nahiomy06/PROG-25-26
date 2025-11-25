@@ -6,13 +6,16 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String option = "c";
 
+        String menu = "P. Piedra\n" +
+                "L. Papel\n" +
+                "T. Tijeras\n" +
+                "S. Salir";
+
 
         do {
             System.out.println("Elija Piedra, Papel o Tijeras para jugar, o salir para cerrar el juego.");
-            System.out.println("P.Piedra");
-            System.out.println("L.Papel");
-            System.out.println("T. Tijeras");
-            System.out.println("S. Salir");
+            System.out.println(menu);
+
             option = sc.nextLine().toUpperCase();
             int Pc = (int) Math.floor(Math.random() * 3);
             int Win = 0;
@@ -36,12 +39,12 @@ public class Main {
                                 //Papel
                                 System.out.println("Pc: Papel");
                                 if (optionP == 0) {
-                                    System.out.println("Has ganado!!");
+                                    System.out.println("\nHas ganado!!");
 
                                     Win++;
 
                                 } else {
-                                    System.out.println("Has Perdido ;_;");
+                                    System.out.println("\nHas Perdido ;_;");
                                 }
                         }
                         if (Pc == 2) {
@@ -49,16 +52,16 @@ public class Main {
                              //Tijera
                             System.out.println("Pc: Tijeras");
                             if (optionP == 1) {
-                                System.out.println("Has ganado!!");
+                                System.out.println("\nHas ganado!!");
 
                             } else {
-                                    System.out.println("Has Perdido ;_;");
+                                    System.out.println("\nHas Perdido ;_;");
                                 }
                         }
 
                         } else {
                             System.out.println("PC: Piedra");
-                            System.out.println("Es un empate!");
+                            System.out.println("\nEs un empate!");
 
                         }
                         break;
@@ -71,9 +74,9 @@ public class Main {
                             //piedra
                             System.out.println("PC: Piedra");
                             if (optionL == 2) {
-                                System.out.println("Has ganado!!");
+                                System.out.println("\nHas ganado!!");
                             } else {
-                                System.out.println("Has Perdido ;_;");
+                                System.out.println("\nHas Perdido ;_;");
                             }
                         }
                         if (Pc == 2) {
@@ -81,16 +84,16 @@ public class Main {
                             //Tijera
                             System.out.println("Pc: Tijeras");
                             if (optionL == 1) {
-                                System.out.println("Has ganado!!");
+                                System.out.println("\nHas ganado!!");
 
                             } else {
-                                System.out.println("Has Perdido ;_;");
+                                System.out.println("\nHas Perdido ;_;");
                             }
                         }
 
                     } else {
                         System.out.println("PC: Papel");
-                        System.out.println("Es un empate!");
+                        System.out.println("\nEs un empate!");
                     }
                     break;
                 case "T":
@@ -102,9 +105,9 @@ public class Main {
                             //piedra
                             System.out.println("Pc: Piedra");
                             if (optionT == 2) {
-                                System.out.println("Has ganado!!");
+                                System.out.println("\nHas ganado!!");
                             } else {
-                                System.out.println("Has Perdido ;_;");
+                                System.out.println("\nHas Perdido ;_;");
                             }
                         }
                         if (Pc == 1) {

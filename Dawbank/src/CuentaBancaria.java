@@ -1,5 +1,6 @@
 public class CuentaBancaria {
 
+    public boolean InfoCuentaBancaria;
     private String IBAN;
     private String Titular;
     private double Saldo;

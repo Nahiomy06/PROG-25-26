@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Dawbank/Dawbank.iml" filepath="$PROJECT_DIR$/Dawbank/Dawbank.iml" />
       <module fileurl="file://$PROJECT_DIR$/Examen/Examen.iml" filepath="$PROJECT_DIR$/Examen/Examen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Herencia1.Part2/Herencia1.Part2.iml" filepath="$PROJECT_DIR$/Herencia1.Part2/Herencia1.Part2.iml" />
       <module fileurl="file://$PROJECT_DIR$/Herencia1.part1/Herencia1.part1.iml" filepath="$PROJECT_DIR$/Herencia1.part1/Herencia1.part1.iml" />
       <module fileurl="file://$PROJECT_DIR$/Programcion.iml" filepath="$PROJECT_DIR$/Programcion.iml" />
     </modules>

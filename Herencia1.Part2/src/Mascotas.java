@@ -20,9 +20,6 @@ public abstract class Mascotas {
 
 
 
-
-
-
     public abstract String Muestra();
 
 

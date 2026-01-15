@@ -1,11 +1,10 @@
-
-public class Producto implements Comparable<Producto>{
+public class Producto implements Comparable<Producto> {
 
     private String Nombre;
     private int Cantidad;
 
 
-    public Producto(String nombre, int cantidad){
+    public Producto(String nombre, int cantidad) {
         this.Nombre = nombre;
         this.Cantidad = cantidad;
 
@@ -35,8 +34,7 @@ public class Producto implements Comparable<Producto>{
     }
 
     @Override
-   public int compareTo(Producto OtroProducto){
+    public int compareTo(Producto OtroProducto) {
         return this.Nombre.compareTo(OtroProducto.Nombre);
-   }
-
+    }
 }

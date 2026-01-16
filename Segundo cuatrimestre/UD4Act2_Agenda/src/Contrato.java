@@ -1,33 +1,32 @@
 import java.util.Objects;
-import java.util.regex.Pattern;
 
 public class Contrato implements Comparable<Contrato> {
-    private String Name;
-    private String Phone;
+    private String Nombre;
+    private String Telefono;
     private String Email;
 
 
     public Contrato(String name, String phone, String email){
-        this.Name = name;
-        this.Phone = phone;
+        this.Nombre = name;
+        this.Telefono = phone;
         this.Email = email;
     }
 
     public String getName() {
-        return Name;
+        return Nombre;
     }
 
     public void setName(String name) {
 
-        Name = name;
+        Nombre = name;
     }
 
     public String getPhone() {
-        return Phone;
+        return Telefono;
     }
 
     public void setPhone(String phone) {
-        Phone = phone;
+        Telefono = phone;
     }
 
     public String getEmail() {
@@ -42,8 +41,8 @@ public class Contrato implements Comparable<Contrato> {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Contrato{");
-        sb.append("Name='").append(Name).append('\'');
-        sb.append(", Phone='").append(Phone).append('\'');
+        sb.append("Nombre='").append(Nombre).append('\'');
+        sb.append(", Telefono='").append(Telefono).append('\'');
         sb.append(", Email='").append(Email).append('\'');
         sb.append('}');
         return sb.toString();
@@ -57,12 +56,12 @@ public class Contrato implements Comparable<Contrato> {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Contrato contrato)) return false;
-        return Objects.equals(Name, contrato.Name) && Objects.equals(Phone, contrato.Phone) && Objects.equals(Email, contrato.Email);
+        return Objects.equals(Nombre, contrato.Nombre) && Objects.equals(Telefono, contrato.Telefono) && Objects.equals(Email, contrato.Email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Name, Phone, Email);
+        return Objects.hash(Nombre, Telefono, Email);
     }
 
 

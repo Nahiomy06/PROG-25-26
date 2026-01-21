@@ -6,19 +6,19 @@ public class Contrato implements Comparable<Contrato> {
     private String Email;
 
 
-    public Contrato(String name, String phone, String email){
-        this.Nombre = name;
-        this.Telefono = phone;
+    public Contrato(String nombre, String telefono, String email){
+        this.Nombre = nombre;
+        this.Telefono = telefono;
         this.Email = email;
     }
 
     public String getName() {
-        return Nombre;
+        Nombre.matches("[A-Z][a-zA-Z]*");
+        return  Nombre;
     }
 
-    public void setName(String name) {
-
-        Nombre = name;
+    public String setName(String Nombre) {
+        return Nombre;
     }
 
     public String getPhone() {
@@ -36,6 +36,21 @@ public class Contrato implements Comparable<Contrato> {
     public void setEmail(String email) {
         Email = email;
     }
+
+
+    public boolean ValidarNombre(String nombre){
+        if (Nombre.matches("[A-Z][a-zA-Z]*")) {
+            return true;
+        } else return false;
+    }
+    public boolean ValidarTelefono(){
+        if (Telefono.matches("[6,7,9][0-9]{8}")) {
+            return true;
+        } else return false;    }
+    public boolean ValidarEmail(){
+        if (Email.matches("[a-zA-Z0-9]+@[a-z]+\\.[a-z]{2,4}")) {
+            return true;
+        } else return false;    }
 
 
     @Override
@@ -56,7 +71,7 @@ public class Contrato implements Comparable<Contrato> {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Contrato contrato)) return false;
-        return Objects.equals(Nombre, contrato.Nombre) && Objects.equals(Telefono, contrato.Telefono) && Objects.equals(Email, contrato.Email);
+        return Objects.equals(Nombre, contrato.Nombre);
     }
 
     @Override

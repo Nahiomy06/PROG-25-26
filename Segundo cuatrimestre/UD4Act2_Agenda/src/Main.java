@@ -1,20 +1,59 @@
+import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Main {
+
+
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
-
-        final String NamePattern = "[A-Z][a-zA-Z]*";
-        final String PhonePattern = "[6,7,9][0-9]{9}";
-        final String EmailPattern = "[a-zA-Z0-9]+@[a-z]+\\.[a-z]{2,4}";
-
-        String Name = MiUtils.comprobarPatronRepetidamente(NamePattern, "Inserte nombre: ");
-        String Phone = MiUtils.comprobarPatronRepetidamente(PhonePattern, "Inserte Numero de telefono: ");
-        String Email = MiUtils.comprobarPatronRepetidamente(EmailPattern, "Inserte email: ");
+        Scanner sc;
 
 
+        Agenda agenda = new Agenda();
 
+
+        sc = new Scanner(System.in);
+        String opcion = "";
+        String menu = "1. Añadir contacto '\n'" +
+                "2. Buscar contacto '\n'" +
+                "3. Eliminar contacto '\n'" +
+                "4. Visualizar agenda '\n'" +
+                "5. Número de contactos de mi agenda '\n'" +
+                "6. Salir";
+
+        do {
+            System.out.println(menu);
+            opcion = sc.nextLine();
+
+            switch (opcion){
+                case "1":
+                    agenda.AnadeContrato();
+                    break;
+
+                case "2":
+                    agenda.BuscarContrato();
+                    break;
+
+                case "3":
+                    agenda.EliminarContrato();
+                    break;
+
+                case "4":
+                    agenda.VisualizarAgenda();
+                    break;
+
+                case "5":
+                    System.out.println("El numero de contratos es: "+ agenda.NumeroComntatos());
+                    break;
+
+                case "6":
+                    System.out.println("El programa se cerrara. ");
+            }
+
+
+
+        } while (!opcion.equals("6"));
 
     }
 }

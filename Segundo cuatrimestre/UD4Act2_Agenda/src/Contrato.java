@@ -38,20 +38,6 @@ public class Contrato implements Comparable<Contrato> {
     }
 
 
-    public boolean ValidarNombre(String nombre){
-        if (Nombre.matches("[A-Z][a-zA-Z]*")) {
-            return true;
-        } else return false;
-    }
-    public boolean ValidarTelefono(){
-        if (Telefono.matches("[6,7,9][0-9]{8}")) {
-            return true;
-        } else return false;    }
-    public boolean ValidarEmail(){
-        if (Email.matches("[a-zA-Z0-9]+@[a-z]+\\.[a-z]{2,4}")) {
-            return true;
-        } else return false;    }
-
 
     @Override
     public String toString() {

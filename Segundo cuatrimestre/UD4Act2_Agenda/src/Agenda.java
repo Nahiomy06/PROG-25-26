@@ -33,14 +33,18 @@ public class Agenda {
 
             if (ExistenContrato(Nombre)) {
                 System.out.println("Este nombre ya esta en uso.\n");
-
             } else {
                 System.out.println("\n Telefono: ");
                 String Telefono = sc.nextLine();
+                if (!Telefono.matches("[6,7,9][0-9]{8}")){
+                    System.out.println("Este telefono no esta en formato correcto.\n");
+                }
 
                 System.out.println("\n Email: ");
                 String Email = sc.nextLine();
-
+                if (!Email.matches("[a-zA-Z0-9]+@[a-z]+\\.[a-z]{2,4}")){
+                System.out.println("Este Email no esta en formato correcto.\n");
+                }
                 Contrato c = new Contrato(Nombre, Telefono, Email);
                 contratos.add(c);
                 System.out.println("Contrato añadido corectamente.\n");
@@ -48,8 +52,11 @@ public class Agenda {
         } else {
             System.out.println("El nombre no esta en formato correcto, deve empesar con mayuscula y ser seguido solo por letras.");
         }
-
     }
+
+    //me estoy volviendo loca ;-;
+
+
 
     //2
     public void BuscarContrato(){

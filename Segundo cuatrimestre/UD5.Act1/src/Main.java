@@ -41,6 +41,51 @@ public class Main {
         }
 
 
+        //3
+
+        double[] vecotor = new double[5];
+
+        int i = 0;
+
+        while (i < vecotor.length){
+            try {
+                System.out.println("Intoduce el valor " + (i + 1 ) + " : ");
+                vecotor[i] = sc.nextInt();
+                i++;
+            } catch (InputMismatchException e
+            ) {
+                System.out.println("El valor introducido es invalido.");
+            sc.next();
+            }
+        }
+
+        System.out.println("\n Vector lleno");
+        for (double num : vecotor){
+            System.out.println(num);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }

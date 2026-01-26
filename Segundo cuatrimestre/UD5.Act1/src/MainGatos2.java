@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class MainGatos2 {
+public class MainGatos2 extends Exception {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         ArrayList<Gatos> gatos = new ArrayList<>();

@@ -16,7 +16,7 @@ public class Gatos {
     public void setNombre(String nombre) throws Exception {
         if (nombre == null || nombre.length() < 3){
             this.Nombre = "John";
-            throw new Exception("El nombre ser mayor a 3 letras. Se pondra el nombre John por defecto;");
+            throw new IllegalArgumentException("El nombre ser mayor a 3 letras. Se pondra el nombre John por defecto;");
         }
         this.Nombre = nombre;
     }

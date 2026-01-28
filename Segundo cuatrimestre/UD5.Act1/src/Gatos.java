@@ -1,3 +1,5 @@
+import java.io.Serializable;
+
 public class Gatos {
     String Nombre;
     int Edad;
@@ -13,10 +15,10 @@ public class Gatos {
         return Nombre;
     }
 
-    public void setNombre(String nombre) throws Exception {
+    public void setNombre(String nombre) throws NombreGatoException {
         if (nombre == null || nombre.length() < 3){
             this.Nombre = "John";
-            throw new IllegalArgumentException("El nombre ser mayor a 3 letras. Se pondra el nombre John por defecto;");
+            throw new NombreGatoException(Nombre);
         }
         this.Nombre = nombre;
     }
@@ -25,10 +27,9 @@ public class Gatos {
         return Edad;
     }
 
-    public void setEdad(int edad) throws Exception {
+    public void setEdad(int edad) throws EdadGatosException {
         if (edad < 0) {
-            this.Edad = 1;
-            throw new Exception("la edad no puede ser negativa o ser un caracter, Se pondra la edad por defecto como 1.");
+            throw new EdadGatosException(Edad);
         }
 
     }
@@ -38,10 +39,12 @@ public class Gatos {
 
     }
 
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "Gatos{" +
+                "Nombre='" + Nombre + '\'' +
+                ", Edad=" + Edad +
+                '}';
+    }
 }
 

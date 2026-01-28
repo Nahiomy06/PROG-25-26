@@ -6,19 +6,13 @@ public class MainGatos {
 
 
 
+
+
         try {
             Gatos G1 = new Gatos("Eyra", 5);
             Gatos G2 = new Gatos("Odin", 3);
             G1.ImprimirGato();
             G2.ImprimirGato();
-
-        }catch (Exception e){
-            System.out.println("Exepcion" + e.getMessage());
-        }
-
-
-        try {
-            Gatos G1 = new Gatos("Eyra", 5);
 
             G1.setEdad(-2);
 
@@ -30,7 +24,10 @@ public class MainGatos {
 
 
         try {
+            Gatos G1 = new Gatos("Eyra", 5);
             Gatos G2 = new Gatos("Odin", 3);
+            G1.ImprimirGato();
+            G2.ImprimirGato();
 
             G2.setNombre("Al");
 

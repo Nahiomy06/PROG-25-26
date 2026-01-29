@@ -1,4 +1,4 @@
-public class EdadGatosException extends RuntimeException {
+public class EdadGatosException extends Exception {
 
     private static final long serialVersionUID = 2L;
 

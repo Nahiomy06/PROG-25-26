@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EjemploExcepciones/EjemploExcepciones.iml" filepath="$PROJECT_DIR$/EjemploExcepciones/EjemploExcepciones.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EjemploFicheros/EjemploFicheros.iml" filepath="$PROJECT_DIR$/EjemploFicheros/EjemploFicheros.iml" />
       <module fileurl="file://$PROJECT_DIR$/EjemploMapa/EjemploMapa.iml" filepath="$PROJECT_DIR$/EjemploMapa/EjemploMapa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EjemplosFichero/EjemplosFichero.iml" filepath="$PROJECT_DIR$/EjemplosFichero/EjemplosFichero.iml" />
       <module fileurl="file://$PROJECT_DIR$/ExepcionesPersonalizadas/ExepcionesPersonalizadas.iml" filepath="$PROJECT_DIR$/ExepcionesPersonalizadas/ExepcionesPersonalizadas.iml" />
       <module fileurl="file://$PROJECT_DIR$/HashCodeAEqualsEjemplo/HashCodeAEqualsEjemplo.iml" filepath="$PROJECT_DIR$/HashCodeAEqualsEjemplo/HashCodeAEqualsEjemplo.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Segundo cuatrimestre.iml" filepath="$PROJECT_DIR$/.idea/Segundo cuatrimestre.iml" />

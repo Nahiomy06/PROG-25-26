@@ -1,6 +1,4 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -25,6 +23,7 @@ public class Main {
 
         String opcion = "";
 
+        cargarFicheros();
 
         do {
             System.out.println(menu);
@@ -89,25 +88,27 @@ public class Main {
         System.out.println("codigo de producto a eliminar: ");
         String Codigo = sc.nextLine();
 
-        for (Producto P : productos) {
-            if (P.getCodigo().equals(Codigo)) {
-                productos.remove(P);
-                System.out.println("Contrato eliminado.");
-            }
+        boolean Eliminado = productos.removeIf(producto -> Codigo.equals(producto.getCodigo()));
+
+        if (Eliminado) {
+            System.out.println("Producto eliminado");
+        }else  {
+            System.out.println("No existen ese producto");
         }
 
     }
 
     public static void guardarFicheros() {
 
-        try(FileWriter Almacen = new FileWriter(path + fileName, true);
+        try(FileWriter Almacen = new FileWriter(path + fileName);
             BufferedWriter BuffW = new BufferedWriter(Almacen)){
 
             for (Producto P : productos) {
                 BuffW.write(P.toString());
                 BuffW.newLine();
-                System.out.println("Producto guardados correctamente.");
             }
+            System.out.println("Cambios guardados correctamente.");
+
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -116,6 +117,20 @@ public class Main {
     }
 
 
+    public static void cargarFicheros() {
+        try (BufferedReader br = new BufferedReader(new FileReader(path + fileName))) {
+
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                productos.add(Producto.enLinea(linea));
+            }
+
+            System.out.println("Stock cargado correctamente.");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
     private static boolean ExistenProductos(String Codigo) {
@@ -123,6 +138,7 @@ public class Main {
             if (P.getCodigo().equalsIgnoreCase(Codigo)) {
                 return true;
             }
-        }return false;
+        }
+        return false;
     }
 }

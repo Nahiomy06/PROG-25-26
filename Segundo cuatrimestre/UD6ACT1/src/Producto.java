@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Producto {
 
 
@@ -55,6 +53,14 @@ public class Producto {
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
+    }
+
+
+
+    public static Producto enLinea(String linea){
+        String[] datos = linea.split(",");
+
+        return new Producto(datos[0], datos[1], Integer.parseInt(datos[2]), Double.parseDouble(datos[3]));
     }
 
 

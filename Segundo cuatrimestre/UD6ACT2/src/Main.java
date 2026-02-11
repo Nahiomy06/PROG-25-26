@@ -2,8 +2,7 @@ import java.io.*;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
 public class Main {
 
     final static String path = ".\\src\\resource\\";

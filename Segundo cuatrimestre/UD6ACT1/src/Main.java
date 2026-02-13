@@ -117,19 +117,19 @@ public class Main {
     }
 
 
-    public static void cargarFicheros() {
-        try (BufferedReader br = new BufferedReader(new FileReader(path + fileName))) {
-
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                productos.add(Producto.enLinea(linea));
+        public static void cargarFicheros() {
+            try (BufferedReader br = new BufferedReader(new FileReader(path + fileName))) {
+    
+                String linea;
+                while ((linea = br.readLine()) != null) {
+                    productos.add(Producto.enLinea(linea));
+                }
+    
+                System.out.println("Almacen se ha cargado correctamente.");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-
-            System.out.println("Almacen se ha cargado correctamente.");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
-    }
 
 
 

@@ -3,10 +3,6 @@ import java.io.Serializable;
 public class Producto{
 
 
-
-
-
-
     private String Codigo;
     private String Nombre;
     private int Cantidad;

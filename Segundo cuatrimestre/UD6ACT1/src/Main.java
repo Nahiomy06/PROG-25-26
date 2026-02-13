@@ -107,7 +107,7 @@ public class Main {
                 BuffW.write(P.toString());
                 BuffW.newLine();
             }
-            System.out.println("Cambios guardados correctamente.");
+            System.out.println("los cambios se an guardado correctamente");
 
 
         } catch (IOException e) {
@@ -125,7 +125,7 @@ public class Main {
                 productos.add(Producto.enLinea(linea));
             }
 
-            System.out.println("Stock cargado correctamente.");
+            System.out.println("Almacen se ha cargado correctamente.");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

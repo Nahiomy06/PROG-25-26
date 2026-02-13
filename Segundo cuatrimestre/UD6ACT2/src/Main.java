@@ -7,6 +7,8 @@ public class Main {
 
     final static String path = ".\\src\\resource\\";
     static String fileName = "Almacen.txt";
+    static final boolean filemode = false;
+    static boolean eof = false;
     static LinkedList<Producto> productos = new LinkedList<>();
 
     public static void main(String[] args) {
@@ -20,7 +22,7 @@ public class Main {
                 "4. Guardar productos en el fichero. " + "\n" +
                 "5. Salir";
 
-        String opcion = "";
+        String opcion;
 
         cargarFicheros();
 
@@ -99,15 +101,17 @@ public class Main {
 
     public static void guardarFicheros() {
 
-        try(FileWriter Almacen = new FileWriter(path + fileName);
-            BufferedWriter BuffW = new BufferedWriter(Almacen)){
+        try(FileOutputStream file =  new FileOutputStream(path + fileName );
+            DataOutputStream escritor = new DataOutputStream(file)) {
+
 
             for (Producto P : productos) {
-                BuffW.write(P.toString());
-                BuffW.newLine();
+                escritor.writeUTF(P.getCodigo());
+                escritor.writeUTF(P.getNombre());
+                escritor.writeFloat(P.getCantidad());
+                escritor.writeDouble(P.getPrecio());
             }
-            System.out.println("Cambios guardados correctamente.");
-
+            System.out.println("los cambios se an guardado correctamente");
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -117,23 +121,33 @@ public class Main {
 
 
     public static void cargarFicheros() {
-        try (BufferedReader br = new BufferedReader(new FileReader(path + fileName))) {
+        try (FileInputStream file = new FileInputStream(path + fileName);
+             DataInputStream lector = new DataInputStream(file)) {
 
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                productos.add(Producto.enLinea(linea));
+            while (!eof){
+
+                String codigo = lector.readUTF();
+                String nombre = lector.readUTF();
+                int cantidad = lector.readInt();
+                double precio = lector.readDouble();
+
+                Producto P = new Producto(codigo, nombre, cantidad, precio);
+                productos.add(P);
             }
 
-            System.out.println("Stock cargado correctamente.");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (EOFException e) {
+            eof = true;
+            System.out.println("Almacen se ha cargado correctamente.");
+
+        } catch (IOException e2) {
+            System.out.println("Error al manejar el almacen: " + e2.getMessage());
         }
     }
 
 
 
     private static boolean ExistenProductos(String Codigo) {
-        for (Producto P : productos) {
+        for (Producto    P : productos) {
             if (P.getCodigo().equalsIgnoreCase(Codigo)) {
                 return true;
             }

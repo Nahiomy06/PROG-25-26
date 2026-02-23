@@ -120,11 +120,14 @@ public class Main {
         public static void cargarFicheros() {
             try (BufferedReader br = new BufferedReader(new FileReader(path + fileName))) {
     
-                String linea;
-                while ((linea = br.readLine()) != null) {
-                    productos.add(Producto.enLinea(linea));
+                String linea = "";
+                while (linea != null){
+                  linea = br.readLine();
+                  productos.add();
+
+
+
                 }
-    
                 System.out.println("Almacen se ha cargado correctamente.");
             } catch (IOException e) {
                 throw new RuntimeException(e);

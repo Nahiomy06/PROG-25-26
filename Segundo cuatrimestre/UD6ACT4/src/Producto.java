@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -190,52 +189,43 @@ public class Producto {
     static final boolean filemode1 = false;
 
 
-    public static void guardarFicherosUnicode() {
-
-        try(FileWriter Almacen = new FileWriter(path1 + fileName1);
-            BufferedWriter BuffW = new BufferedWriter(Almacen)){
-
-            for (Producto P : productos) {
-                BuffW.write(P.toString());
-            }
-            System.out.println("los cambios del almacen Unicode an guardado correctamente");
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-    }
+//    public static void guardarFicherosUnicode() {
+//
+//        try(FileWriter Almacen = new FileWriter(path1 + fileName1);
+//            BufferedWriter BuffW = new BufferedWriter(Almacen)){
+//
+//            for (Producto P : productos) {
+//                BuffW.write(P.toString());
+//            }
+//            System.out.println("los cambios del almacen Unicode an guardado correctamente");
+//
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//
+//    }
 
     public static void cargarFicherosUnicode() {
         try (BufferedReader br = new BufferedReader(new FileReader(path1 + fileName1))) {
-
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                productos.add(linea);
-            }
+            String linea = "";
+//            while (linea != null){
+//                linea = br.readLine();
+//                if (linea != null) {
+//                    if (linea.equals("")) {
+//                        productos.add(linea);
+//                    }
+//                }
+//            }
+//
+//            while ((linea = br.readLine()) != null) {
+//                productos.add(linea);
+//            }
 
             System.out.println("Almacen se ha cargado correctamente.");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -269,12 +259,12 @@ public class Producto {
             System.out.println("los cambios binarios se an guardado correctamente");
 
         } catch (IOException e) {
-            System.out.println("Error al abrir Almacen" + e.getMessage());
+            System.out.println("(Binario) Error al abrir Almacen: " + e.getMessage());
         }
 
     }
 
-    public static void cargarFicheros() {
+    public static void cargarFicherosBinarios() {
         try (FileInputStream file = new FileInputStream(path2 + fileName2);
              DataInputStream lector = new DataInputStream(file)) {
 
@@ -299,11 +289,47 @@ public class Producto {
     }
 
 
+    //Serializable
+    final static String path3 = ".\\src\\resource\\";
+    static String fileName3 = "inventario.dat";
+
+    public static void guardarFicheros() {
+        try(FileOutputStream file =  new FileOutputStream(path3 + fileName3);
+            ObjectOutputStream buffer = new ObjectOutputStream(file)) {
+
+            for (Producto P : productos) {
+                buffer.writeObject(P);
+            }
+            System.out.println("Los libros se an guardado exitosamente");
 
 
+        } catch (IOException e) {
+            System.out.println("Error de archivo: " + e.getMessage());
+        }
+    }
+
+    public static void cargarFicheros() {
+        try (FileInputStream file = new FileInputStream(path3 + fileName3);
+             ObjectInputStream lector = new ObjectInputStream(file)){
 
 
+            while (!eof){
+                Object obj = lector.readObject();
+                if (obj instanceof Producto) {
+                    Producto L = (Producto) obj;
+                    productos.add(L);
+                    System.out.println(L);
+                }
 
+            }
+
+        } catch (EOFException eof) {
+            System.out.println("La libreria ha sido cargada correctamente.");
+
+        } catch (IOException |  ClassNotFoundException e) {
+            System.out.println("Error de archivo: " + e.getMessage());
+        }
+    }
 
 
 

@@ -22,6 +22,7 @@ public class Inventario {
         String option = "";
 
 
+        Producto.cargarFicherosBinarios();
         do {
             System.out.println(Menu);
             option = sc.nextLine();
@@ -29,13 +30,24 @@ public class Inventario {
 
 
             switch (option) {
-                case "1" -> Producto.mostrarProducto();
-                case "2" -> Producto.crearProducto();
-                case "3" -> Producto.eliminarProducto();
-                case "4" -> System.out.println("Salir");
+                case "1":
+                    Producto.mostrarProducto();
+                    break;
+                case "2":
+//                    Producto.crearProducto();
+                    break;
+                case "3":
+                    Producto.eliminarProducto();
+                    break;
+                case "4":
+                    Producto.guardarFicheros();
+                    Producto.guardarFicherosBinario();
+                    Producto.cargarFicheros();
+                    System.out.println("Cerrando programa.");
+                    break;
             }
 
-        }while (!option.equals(4));
+        }while (!option.equals("4"));
 
 
 

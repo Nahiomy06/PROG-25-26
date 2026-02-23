@@ -57,13 +57,6 @@ public class Producto {
 
 
 
-    public static Producto enLinea(String linea){
-        String[] datos = linea.split(",");
-
-        return new ;
-    }
-
-
 
 
 

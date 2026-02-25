@@ -1,16 +1,13 @@
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.EOFException;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+
+
+
 
         //path a la carpeta Recursos del proyecto
         final String pathFile = "./src/Recursos/";
@@ -21,8 +18,11 @@ public class Main {
         //Nombre del fichero UNICODE
         final String fileNameUnicode = "productos.csv";
 
+        //Fichero Serializable
+        final String fileNameSerial = "inventario.dat";
 
-        //Metodo para que se escriba el fichero binario como se necesita
+
+                //Metodo para que se escriba el fichero binario como se necesita
         //escribirFicheroBinarioExamen(pathFile, fileNameBinario);
 
 
@@ -33,6 +33,44 @@ public class Main {
         LinkedList<Producto> productosLeidosBinarios = new LinkedList<Producto>();
 
 
+
+
+//        Scanner sc = new Scanner(System.in);
+//
+//        String Menu = """
+//
+//                --INVENTARIO--
+//
+//                1. Mostrar Productos en el Inventario.
+//                2. (Opcional) Registrar producto en el Inventario
+//                3. Eliminar Producto por referencia.
+//                4. Guardar y Salir.
+//
+//                """;
+//
+//        String option = "";
+//
+//        do {
+//            System.out.println(Menu);
+//            option = sc.nextLine();
+//
+//            switch (option) {
+//                case "1":
+//                    break;
+//
+//                case "2":
+//                    break;
+//                case "3":
+//                    break;
+//                case "4":
+//                    break;
+//
+//
+//            }
+//        }while (!option.equals("4"));
+
+
+
         Producto[] productos = (Producto[]) productosLeidos.toArray();
         Producto[] productos2 = (Producto[]) productosLeidosBinarios.toArray();
 
@@ -41,7 +79,6 @@ public class Main {
         }
 
         //prueba
-
 
 
         int i = 0;
@@ -147,15 +184,14 @@ public class Main {
 
     private static void escribirFicheroBinarioExamen(final String pathFile, String fileNameBinario) {
         //Escritura de fichero binario
-        try(FileOutputStream fichero = new FileOutputStream(pathFile+fileNameBinario, false);
-            DataOutputStream escritor = new DataOutputStream(fichero);)
-        {
+        try (FileOutputStream fichero = new FileOutputStream(pathFile + fileNameBinario, false);
+             DataOutputStream escritor = new DataOutputStream(fichero);) {
 
-            Producto p1 = new Producto(5,25.75,15,21,false);
-            Producto p2 = new Producto( 15,55.95,5,21,true);
-            Producto p3 = new Producto(100,3.25,0,21,false);
-            Producto p4 = new Producto(300,0.95,0,21,false);
-            Producto p5 = new Producto(27,5.25,13,21,true);
+            Producto p1 = new Producto(5, 25.75, 15, 21, false);
+            Producto p2 = new Producto(15, 55.95, 5, 21, true);
+            Producto p3 = new Producto(100, 3.25, 0, 21, false);
+            Producto p4 = new Producto(300, 0.95, 0, 21, false);
+            Producto p5 = new Producto(27, 5.25, 13, 21, true);
 
 
             LinkedList<Producto> productos = new LinkedList<Producto>();
@@ -167,8 +203,7 @@ public class Main {
             productos.add(p5);
 
 
-            for(Producto p : productos)
-            {
+            for (Producto p : productos) {
 
                 escritor.writeInt(p.getCantidad());
                 escritor.writeDouble(p.getPrecio());
@@ -177,15 +212,57 @@ public class Main {
                 escritor.writeBoolean(p.isAplicarDto());
             }
 
-        }catch(IOException e) {
+        } catch (IOException e) {
             System.out.println("Ha ocurrido un error al I/O");
             System.out.println(e.getMessage());
 
-        }catch(Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Ha ocurrido un error inexperado");
             System.out.println(e.getMessage());
 
         }
     }
+
+
+    public static void escribirSerializable(String pathFile, String fileNameSerial, LinkedList<Producto> Lista) {
+        try (FileOutputStream file = new FileOutputStream(pathFile + fileNameSerial);
+             ObjectOutputStream escritor = new ObjectOutputStream(file)) {
+
+            escritor.writeObject(Lista);
+
+            System.out.println(Lista);
+
+            System.out.println("El inventario se ah guardado correctamente");
+
+        } catch (FileNotFoundException ex) {
+            System.out.println("El inventario no se ha encontrado");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void leerSerializable(final String pathFile, String fileNameSerial) {
+        boolean eof = false;
+
+        try (FileInputStream file = new FileInputStream(pathFile + fileNameSerial);
+        ObjectInputStream lector = new ObjectInputStream(file)){
+
+            while (!eof){
+                Object obj = lector.readObject();
+                if (obj instanceof Producto){
+                    Producto p = (Producto) obj;
+                    System.out.println(p);
+
+                }
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
 }//clase

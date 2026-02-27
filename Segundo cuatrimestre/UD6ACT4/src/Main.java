@@ -108,25 +108,20 @@ public class Main {
 
             int i = 0;
 
-            while (!eof) {
-                int Cantidad = dis.readInt();
-                double Precio = dis.readDouble();
-                int Descuenta = dis.readInt();
-                int IVA = dis.readInt();
-                boolean AplicarDto =  dis.readBoolean();
+            while (i < productos.size()) {
+                Producto p = productos.get(i);
 
-                if (i > productos.size()){
-                    Producto p = productos.get(i);
+                p.setCantidad(dis.readInt());
+                p.setPrecio(dis.readDouble());
+                p.setDescuento(dis.readInt());
+                p.setIVA(dis.readInt());
+                p.setAplicarDto(dis.readBoolean());
 
-                    p.setCantidad(Cantidad);
-                    p.setPrecio(Precio);
-                    p.setDescuento(Descuenta);
-                    p.setIVA(IVA);
-                    p.setAplicarDto(AplicarDto);
-                }
                 i++;
             }
 
+        } catch (EOFException e){
+            System.out.println("Se ah leido el archivo " + fileNameBinario);
         } catch (FileNotFoundException e) {
             System.out.println("Error al encontrar el archivo " + fileNameBinario);
         } catch (IOException e) {
@@ -188,6 +183,7 @@ public class Main {
     }
 
     public static void CargarProductos(){
+        productos.clear();
         LeerUnicode();
         LeerBinario();
     }
@@ -213,13 +209,12 @@ public class Main {
 
     public static void CrearProductos(){
 
-        System.out.println("Creando productos");
+        System.out.println("Creando producto");
         System.out.println("Ingrese la referencia del producto: ");
         String Referencia = sc.nextLine();
 
         if (ExisteProductos(Referencia)){
             System.out.println("Esa referencia ya existe.");
-            return;
         } else {
             System.out.println("Ingrese el nombre del producto: ");
             String Nombre = sc.nextLine();

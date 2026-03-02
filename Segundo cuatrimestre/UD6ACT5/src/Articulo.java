@@ -54,8 +54,7 @@ public class Articulo {
                 "Cod='" + Cod + '\'' +
                 ", Titulo='" + Titulo + '\'' +
                 ", FechaRegistro=" + FechaRegistro +
-                ", FechaBaja=" + FechaBaja +
-                '}';
+                ", FechaBaja=" + FechaBaja;
     }
 
 }

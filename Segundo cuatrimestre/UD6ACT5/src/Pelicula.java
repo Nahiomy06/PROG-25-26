@@ -12,7 +12,7 @@ public class Pelicula extends Articulo{
 
         this.GeneroPelicula = GeneroPelicula;
         this.FechaAlquiler = FechaAlquiler;
-        this.EstaAlquilada = EstaAlquilada;
+        this.EstaAlquilada = false;
     }
 
     public GeneroPelicula getGeneroPelicula() {
@@ -31,7 +31,7 @@ public class Pelicula extends Articulo{
         FechaAlquiler = fechaAlquiler;
     }
 
-    public boolean isEstaAlquilada() {
+    public boolean EstaAlquilada() {
         return EstaAlquilada;
     }
 
@@ -41,10 +41,28 @@ public class Pelicula extends Articulo{
 
     @Override
     public String toString() {
-        return "Pelicula{" +
-                "GeneroPelicula=" + GeneroPelicula +
-                ", FechaAlquiler=" + FechaAlquiler +
-                ", EstaAlquilada=" + EstaAlquilada +
+        return super.toString() +
+                " Genero de la pelicula=" + GeneroPelicula +
+                ", Fecha de alquiler=" + FechaAlquiler +
+                ", Esta alquilada?=" + EstaAlquilada +
                 '}';
     }
+
+
+    public void  alquilarPelicula(){
+        if (EstaAlquilada == false) {
+                EstaAlquilada = true;
+                FechaAlquiler = LocalDate.now();
+        }
+    }
+
+    public void devolverPelicula(){
+        EstaAlquilada = false;
+        FechaAlquiler = null;
+    }
+
+
+
+
+
 }

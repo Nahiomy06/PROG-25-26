@@ -1,15 +1,18 @@
+import java.time.LocalDate;
+
 public class Persona {
 
     private String DNI;
     private String Nombre;
     private String Direccion;
-//    private LocalDate FechaNacimiento;
+    private LocalDate FechaNacimiento;
 
 
-    public Persona(String DNI, String Nombre, String Direccion) {
+    public Persona(String DNI, String Nombre, String Direccion, LocalDate FechaNacimiento ) {
         this.DNI = DNI;
         this.Nombre = Nombre;
         this.Direccion = Direccion;
+        this.FechaNacimiento = FechaNacimiento;
     }
 
     public String getDNI() {
@@ -36,13 +39,20 @@ public class Persona {
         Direccion = direccion;
     }
 
+    public LocalDate getFechaNacimiento() {
+        return FechaNacimiento;
+    }
+
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        FechaNacimiento = fechaNacimiento;
+    }
+
     @Override
     public String toString() {
         return "Persona{" +
                 "DNI='" + DNI + '\'' +
                 ", Nombre='" + Nombre + '\'' +
-                ", Direccion='" + Direccion + '\'' +
-                '}';
+                ", Direccion='" + Direccion + '\'';
     }
 
 }

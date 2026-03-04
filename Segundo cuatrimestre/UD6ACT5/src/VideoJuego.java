@@ -53,8 +53,10 @@ public class VideoJuego extends Articulo{
     }
 
     public void  alquilarVideojuego(){
-        EstaAlquilada = true;
-        FechaAlquiler = LocalDate.now();
+        if(EstaAlquilada == false){
+            EstaAlquilada = true;
+            FechaAlquiler = LocalDate.now();
+        }
     }
 
     public void devolverVideojuego(){

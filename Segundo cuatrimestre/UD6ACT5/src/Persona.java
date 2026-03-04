@@ -49,10 +49,26 @@ public class Persona {
 
     @Override
     public String toString() {
+
         return "Persona{" +
                 "DNI='" + DNI + '\'' +
                 ", Nombre='" + Nombre + '\'' +
                 ", Direccion='" + Direccion + '\'';
     }
+
+
+
+
+
+
+
+
+
+
+//            LocalDate.now().minusYears(18);
+
+
+
+
 
 }

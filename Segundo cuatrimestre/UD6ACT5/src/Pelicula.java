@@ -42,7 +42,7 @@ public class Pelicula extends Articulo{
     @Override
     public String toString() {
         return super.toString() +
-                " Genero de la pelicula=" + GeneroPelicula +
+                ", Genero de la pelicula=" + GeneroPelicula +
                 ", Fecha de alquiler=" + FechaAlquiler +
                 ", Esta alquilada?=" + EstaAlquilada +
                 '}';
@@ -51,8 +51,8 @@ public class Pelicula extends Articulo{
 
     public void  alquilarPelicula(){
         if (EstaAlquilada == false) {
-                EstaAlquilada = true;
-                FechaAlquiler = LocalDate.now();
+            EstaAlquilada = true;
+            FechaAlquiler = LocalDate.now();
         }
     }
 

@@ -1,10 +1,12 @@
+import Exepciones.EstaAlquiladaExeption;
+
 import java.time.LocalDate;
 
 public class Pelicula extends Articulo{
 
     private GeneroPelicula GeneroPelicula;
     private LocalDate FechaAlquiler;
-    private boolean EstaAlquilada;
+    boolean EstaAlquilada;
 
     public Pelicula(String Cod, String Titulo, LocalDate FechaRegistro, LocalDate FechaBaja,
                     GeneroPelicula GeneroPelicula, LocalDate FechaAlquiler, boolean EstaAlquilada) {
@@ -19,41 +21,35 @@ public class Pelicula extends Articulo{
         return GeneroPelicula;
     }
 
-    public void setGeneroPelicula(GeneroPelicula generoPelicula) {
-        GeneroPelicula = generoPelicula;
-    }
 
     public LocalDate getFechaAlquiler() {
         return FechaAlquiler;
-    }
-
-    public void setFechaAlquiler(LocalDate fechaAlquiler) {
-        FechaAlquiler = fechaAlquiler;
     }
 
     public boolean EstaAlquilada() {
         return EstaAlquilada;
     }
 
-    public void setEstaAlquilada(boolean estaAlquilada) {
-        EstaAlquilada = estaAlquilada;
-    }
-
     @Override
     public String toString() {
-        return super.toString() +
-                ", Genero de la pelicula=" + GeneroPelicula +
-                ", Fecha de alquiler=" + FechaAlquiler +
+        return "Pelicular {" + '\'' + "Cod='" + this.getCod() + '\'' +
+                ", Titulo='" + this.getTitulo() + '\'' +
+                ", FechaRegistro=" + this.getFechaRegistro() + '\'' +
+                ", FechaBaja=" + this.getFechaBaja() + '\'' +
+                ", Genero de la pelicula=" + GeneroPelicula + '\'' +
+                ", Fecha de alquiler=" + FechaAlquiler + '\'' +
                 ", Esta alquilada?=" + EstaAlquilada +
                 '}';
     }
 
 
-    public void  alquilarPelicula(){
+    public void  alquilarPelicula() throws EstaAlquiladaExeption {
         if (EstaAlquilada == false) {
             EstaAlquilada = true;
             FechaAlquiler = LocalDate.now();
         }
+        String mensaje = "Esta pelicula ya esta alquilado";
+        throw  new EstaAlquiladaExeption(mensaje);
     }
 
     public void devolverPelicula(){

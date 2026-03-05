@@ -22,29 +22,22 @@ public class Cliente extends Persona {
         return NumSocio;
     }
 
-    public void setNumSocio(String numSocio) {
-        NumSocio = numSocio;
-    }
 
     public LocalDate getFechaBaja() {
         return FechaBaja;
     }
 
-    public void setFechaBaja(LocalDate fechaBaja) {
-        FechaBaja = fechaBaja;
-    }
 
     public LinkedList<Articulo> getArticulosAlquilados() {
         return ArticulosAlquilados;
     }
 
-    public void setArticulosAlquilados(LinkedList<Articulo> articulosAlquilados) {
-        ArticulosAlquilados = articulosAlquilados;
-    }
 
     @Override
     public String toString() {
-        return super.toString() +
+        return "Cliente {" + '\'' + "DNI='" + this.getDNI() + '\'' +
+                ", Nombre='" + this.getNombre() + '\'' +
+                ", Direccion='" + this.getDireccion() + '\'' +
                 " Numero de Socio='" + NumSocio + '\'' +
                 ", Articulos alquilados=" + ArticulosAlquilados +
                 '}';

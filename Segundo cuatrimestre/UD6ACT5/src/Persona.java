@@ -1,4 +1,7 @@
+
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 public class Persona {
 
@@ -7,8 +10,13 @@ public class Persona {
     private String Direccion;
     private LocalDate FechaNacimiento;
 
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
 
     public Persona(String DNI, String Nombre, String Direccion, LocalDate FechaNacimiento ) {
+        if (Period.between(LocalDate.now(), FechaNacimiento).getYears() < 18) {
+            throw new IllegalArgumentException();
+        }
         this.DNI = DNI;
         this.Nombre = Nombre;
         this.Direccion = Direccion;
@@ -19,9 +27,6 @@ public class Persona {
         return DNI;
     }
 
-    public void setDNI(String DNI) {
-        this.DNI = DNI;
-    }
 
     public String getNombre() {
         return Nombre;
@@ -35,17 +40,11 @@ public class Persona {
         return Direccion;
     }
 
-    public void setDireccion(String direccion) {
-        Direccion = direccion;
+
+    public String getFechaNacimiento() {
+        return FechaNacimiento.format(formatter);
     }
 
-    public LocalDate getFechaNacimiento() {
-        return FechaNacimiento;
-    }
-
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        FechaNacimiento = fechaNacimiento;
-    }
 
     @Override
     public String toString() {

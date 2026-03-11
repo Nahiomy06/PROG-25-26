@@ -9,7 +9,7 @@ public class Pelicula extends Articulo{
     boolean EstaAlquilada;
 
     public Pelicula(String Cod, String Titulo, LocalDate FechaRegistro, LocalDate FechaBaja,
-                    GeneroPelicula GeneroPelicula, LocalDate FechaAlquiler, boolean EstaAlquilada) {
+                    GeneroPelicula GeneroPelicula) {
         super(Cod, Titulo, FechaRegistro, FechaBaja);
 
         this.GeneroPelicula = GeneroPelicula;

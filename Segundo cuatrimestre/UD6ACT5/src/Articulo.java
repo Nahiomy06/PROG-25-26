@@ -8,7 +8,7 @@ public class Articulo {
     private LocalDate FechaBaja;
 
 
-    public Articulo(String Cod, String Titulo, LocalDate FechaRegistro, LocalDate FechaBaja) {
+    public Articulo(String Cod, String Titulo) {
         this.Cod = Cod;
         this.Titulo = Titulo;
         this.FechaRegistro = LocalDate.now();
@@ -27,25 +27,6 @@ public class Articulo {
         return Titulo;
     }
 
-    public void setTitulo(String titulo) {
-        Titulo = titulo;
-    }
-
-    public LocalDate getFechaRegistro() {
-        return FechaRegistro;
-    }
-
-    public void setFechaRegistro(LocalDate fechaRegistro) {
-        FechaRegistro = fechaRegistro;
-    }
-
-    public LocalDate getFechaBaja() {
-        return FechaBaja;
-    }
-
-    public void setFechaBaja(LocalDate fechaBaja) {
-        FechaBaja = fechaBaja;
-    }
 
 
     @Override

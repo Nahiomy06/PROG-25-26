@@ -1,14 +1,20 @@
 package org.example;
 
-import java.sql.Connection;
+
+import java.util.List;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
 
-        Connection conn = SQLdataManager.getConnection();
-        
-        System.out.println("Conectado con exito");
+        List<String> empNombres = SQLAccesEmployees.getEmployeesName();
+
+        for (String emp : empNombres) {
+            System.out.println(emp);
+        }
+
+
+
     }
 }

@@ -8,7 +8,7 @@ public class SQLdataManager {
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/";
-    private static final String SCHEMA = "";
+    private static final String SCHEMA = "employees";
     private static final String USER = "root";
     private static final String PASSWORD = "daw12";
 
@@ -18,6 +18,7 @@ public class SQLdataManager {
         try{
 
             Class.forName(DRIVER);
+
             conn = DriverManager.getConnection(URL + SCHEMA, USER, PASSWORD);
 
         }catch (ClassNotFoundException e){

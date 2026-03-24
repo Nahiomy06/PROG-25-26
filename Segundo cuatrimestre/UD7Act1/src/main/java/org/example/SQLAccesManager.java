@@ -47,7 +47,7 @@ public class SQLAccesManager {
 
 
     //2 Despues pone un list
-    public static producto getProductoId(String RefProducto) {
+    public static producto getProductoRef(String RefProducto) {
 
         producto P = null;
 
@@ -271,6 +271,7 @@ public class SQLAccesManager {
 
         return response;
     }
+
 
 
 

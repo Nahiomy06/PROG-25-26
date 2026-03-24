@@ -1,5 +1,6 @@
 package org.example;
 
+import java.sql.Connection;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,18 +9,25 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-
-
+        try {
+            SQLManager.CargarConnection();
+            Connection conn = SQLManager.getConnection();
+            if (conn != null) {
+                System.out.println("Conectado correctamente");
+            }
+        }catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
 
 
 
         String Menu = """
                 
                 1. Mostrar todos los Productos en el Inventario.
-                2. Buscar producto por referencia.
+                2. Buscar producto por referencia (REF-xxx).
                 3. Buscar productos por tipo.
                 4. Buscar producto por cantidad.
-                5. Insertar un nuevo producto (no permitir referencias repetidas).
+                5. Insertar un nuevo producto.
                 6. Eliminar Producto por referencia.
                 7. Actualizar producto (descripción, cantidad, precio, descuento, AplicarDto).
                 8. Insertar un nuevo tipo de producto.
@@ -59,7 +67,7 @@ public class Main {
 
                         System.out.print("Entar la referencia del producto: ");
                         String ref = sc.nextLine();
-                        System.out.println(SQLAccesManager.getProductoId(ref));
+                        System.out.println(SQLAccesManager.getProductoRef(ref));
                     } catch (Exception e) {
                         System.err.println(e.getMessage());
                     }

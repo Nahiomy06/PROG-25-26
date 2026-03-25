@@ -14,7 +14,7 @@ create table tipos(
 );
 
 create table productos(
-		id int auto_increment,
+		id int auto_increment unique,
         referencia varchar (20) not null,
         nombre varchar (30) not null,
         descripcion varchar (100),

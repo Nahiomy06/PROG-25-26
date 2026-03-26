@@ -19,9 +19,9 @@ public class Species {
 
     @Override
     public String toString() {
-        return "Species{" +
-                "species_id=" + species_id +
-                ", species='" + species + '\'' +
-                '}';
+        return "Species[" +
+                "species_id= " + species_id + " | " +
+                "species= " + species + " | " +
+                ']';
     }
 }

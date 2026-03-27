@@ -120,15 +120,100 @@ public class SQLAcces {
 
             }
 
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+
+    }
+
+    public static int InsertAnimals(Animals a){
+
+    int response = -1;
+
+    String SQLInsertAnimals = """
+            insert into animals(pet_name, species, age, gender, arrival_date, caretaker, adopted)
+            values (?, ?, ?, ?, ?, ?, ?);
+            """;
+
+    try (Connection connection = SQLManager.getConnection();
+        PreparedStatement statement = connection.prepareStatement(SQLInsertAnimals)){
+
+        statement.setNString(1, a.getAnimal_name());
+        statement.setInt(2, a.getSpecies_id());
+        statement.setInt(3, a.getAge());
+        statement.setNString(4, a.getGender().toString());
+        statement.setDate(5, Date.valueOf(a.getArrival_date()));
+        statement.setInt(6, a.getCaretaker());
+        statement.setBoolean(7, a.isAdopted());
+
+        response = statement.executeUpdate();
+
+        System.out.println("Animals insertado con exito");
 
 
 
+    } catch (SQLException e) {
+        System.err.println("Error: " + e.getMessage());
+    }
+
+    return response;
+
+    }
+
+
+
+    public static List<Species> getAnimalSpecies(){
+
+        List<Species> species = new LinkedList<>();
+
+        String SQLAnimalSpecies = "select species_id, species from animal_species";
+
+        try (Connection connection = SQLManager.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SQLAnimalSpecies)){
+
+
+            while (resultSet.next()) {
+                species.add(new Species(
+                        resultSet.getInt(1),
+                        resultSet.getString(2)
+                ));
+            }
 
         } catch (SQLException e) {
             System.err.println("Error: " + e.getMessage());
         }
 
+        return species;
 
+
+    }
+
+
+    public static List<Staff> getStaffName(){
+
+        List<Staff> staff = new LinkedList<>();
+
+        String SQLSeeStaff = "select staff_id, first_name, last_name  from staff";
+
+        try (Connection connection = SQLManager.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(SQLSeeStaff)){
+
+            while (resultSet.next()) {
+
+                staff.add(new Staff(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3)
+                ));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return staff;
     }
 
 

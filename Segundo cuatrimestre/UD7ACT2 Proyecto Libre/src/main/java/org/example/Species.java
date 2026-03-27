@@ -5,7 +5,8 @@ public class Species {
     private int species_id;
     private String species;
 
-    public Species(String species) {
+    public Species(int species_id ,String species) {
+        this.species_id = species_id;
         this.species = species;
     }
 
@@ -19,7 +20,7 @@ public class Species {
 
     @Override
     public String toString() {
-        return "Species[" +
+        return '[' +
                 "species_id= " + species_id + " | " +
                 "species= " + species + " | " +
                 ']';

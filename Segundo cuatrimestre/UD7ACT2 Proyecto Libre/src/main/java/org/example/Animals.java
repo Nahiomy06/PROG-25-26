@@ -78,7 +78,7 @@ public class Animals {
                 "Edad = " + age + " | " +
                 "Genero= " + gender + " | " +
                 "Fecha de llegada= " + Arrival_date + " | " +
-                "Cuidador= " + Caretaker + " | " +
+                "Id del cuidador= " + Caretaker + " | " +
                 "Estado de adopcion= " + adopted + "]";
     }
 }

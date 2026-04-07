@@ -190,23 +190,40 @@ public class SQLAcces {
     }
 
 
-    public static List<Staff> getStaffName(){
+    public static List<Staff> getCaretakersName(){
 
         List<Staff> staff = new LinkedList<>();
 
-        String SQLSeeStaff = "select staff_id, first_name, last_name  from staff";
-
+        String SQLSeeStaff = "select staff_id, birth_date, first_name, last_name, gender, hire_date, work_role  from staff where work_role = 'cuidador' and staff_id is not null";
+//        "select staff_id, first_name, last_name  from staff where work_role = 'cuidador'";
+//        "select staff_id, birth_date, first_name, last_name, gender, hire_date, work_role  from staff where work_role = 'cuidador' and staff_id is not null "
         try (Connection connection = SQLManager.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(SQLSeeStaff)){
 
-            while (resultSet.next()) {
 
-                staff.add(new Staff(
-                        resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3)
-                ));
+//            while (resultSet.next()){
+//                staff.add(new Staff(resultSet.getInt(1),
+//                        resultSet.getString(2),
+//                        resultSet.getString(3)));
+//
+//
+//            }
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                Date birth_Day = resultSet.getDate(2);
+                LocalDate localDateBirth = birth_Day.toLocalDate();
+                String first_name = resultSet.getString(3);
+                String last_name = resultSet.getString(4);
+                Gender gender = Gender.valueOf(resultSet.getString((5)));
+                Date hire_date = resultSet.getDate(6);
+                LocalDate localDateHire = hire_date.toLocalDate();
+                WorkRole work_role = WorkRole.valueOf(resultSet.getString(7));
+
+
+                staff.add(new Staff(id, localDateBirth, first_name, last_name, gender, localDateHire, work_role ));
+
             }
 
         } catch (SQLException e) {

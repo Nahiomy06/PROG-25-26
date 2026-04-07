@@ -64,8 +64,8 @@ public class Staff {
                 "Nombre= " + first_name + " | " +
                 "Apellido= " + last_name + " | " +
                 "Genero= " + gender + " | " +
-                "Fecha de inicio= " + hire_date +
-                "Rol de trabajo" + work_role +
+                "Fecha de inicio= " + hire_date + " | " +
+                "Rol de trabajo= " + work_role +
                 ']';
     }
 }

@@ -8,13 +8,15 @@ public class MenuShetler {
     public static void main(String[] args) {
 
 
-        String menu = """
-                            
-                            
+        String menu = """            
                             --Refujio de animales--
                 1. Ver animales en adopcion--
                 2. Registro de todos los animales--
                 3. Registrar nuevo animal--
+                4. Adoptar un animal--
+                5. Contratar empleado--
+                6. Buscar Animales--
+                
                 """;
 
 
@@ -62,15 +64,15 @@ public class MenuShetler {
                         int specie = ElegirEspecie(sc);
 
                         System.out.println("Edad en años: ");
-                        int edad = sc.nextInt();
+                        int age = sc.nextInt();
                         sc.nextLine();
 
-                        Gender genero;
+                        Gender gender;
                         while (true) {
                             System.out.println("Genero (M/F): ");
                             String generoS = sc.nextLine().toUpperCase().trim();
                             if (generoS.equals("M") || generoS.equals("F")) {
-                                genero = Gender.valueOf(generoS);
+                                gender = Gender.valueOf(generoS);
                                 break;
                             } else {
                                 System.out.println("El formato del genero es invalido. ");
@@ -93,18 +95,28 @@ public class MenuShetler {
                             }
                         }
 
-                        S
+                        int caretakerID = ElejirCuidador(sc);
 
+                        boolean adopted = false;
 
-
-
-
+                        SQLAcces.InsertAnimals(new Animals(pet_name, specie, age, gender, llegada, caretakerID, adopted));
 
 
 
                     } catch (Exception e) {
                         System.err.println("Error: " + e.getMessage());
                     }
+                    break;
+
+                case "4":
+                    break;
+                case "5":
+                    break;
+                case "6":
+                    //Sub menu con distinatas busquedas (por edad, fecha de llegada, ect.)
+                    break;
+
+
 
 
             }
@@ -136,12 +148,49 @@ public class MenuShetler {
     static List<Animals> animals = SQLAcces.getAnimales();
 
 
-    public static int ElejirCuidador(){
+    public static int ElejirCuidador(Scanner sc){
+
+        List<Staff> caretakers = SQLAcces.getCaretakersName();
+
+        int option;
+
+        do {
+            System.out.println("        --- Cuidadores ---");
+
+            for (int i = 0; i < caretakers.size(); i++){
+                System.out.println((i + 1) + ". " + caretakers.get(i));
+            }
+
+            System.out.println("Elige una opction");
+
+            try {
+                sc = new Scanner(System.in);
+                option = Integer.parseInt(sc.nextLine());
+            }catch (NumberFormatException e) {
+                option = -1;
+            }
+
+            if (option < 1 || option > caretakers.size()) {
+                System.out.println("Opción inválida, intenta otra vez\n");
+            }
+
+
+        }   while (option < 1 || option > caretakers.size());
 
 
 
 
+
+
+
+
+        return  caretakers.get(option - 1).getStaff_id();
     }
+
+
+
+
+
 
 
 

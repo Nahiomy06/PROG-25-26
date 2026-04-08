@@ -1,6 +1,7 @@
 package org.example;
 
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -113,7 +114,8 @@ public class MenuShetler {
                 case "5":
                     break;
                 case "6":
-                    //Sub menu con distinatas busquedas (por edad, fecha de llegada, ect.)
+                    option = subMenuBusqueda(sc);
+
                     break;
 
 
@@ -128,6 +130,7 @@ public class MenuShetler {
 
 
 
+    }
 
 
 
@@ -136,14 +139,98 @@ public class MenuShetler {
 
 
 
+    public static String subMenuBusqueda(Scanner sc){
 
+        String option;
 
+        String subMenu = """
+                            --- Buscar por ... ---
+                
+                1. Id.
+                2. Nombre.
+                3. Edad.
+                4. Estadia.
+                5. Genero.
+                6. Especie.
+                7. Cuidador.
+                0. Volver al menu principal--
+                """;
 
+        do {
+            System.out.println(subMenu);
+            option = sc.nextLine();
+            switch (option) {
+                case "1":
+                    try {
+                        System.out.println("Ingrese el id del animal que desea buscar: ");
+                        int ID = sc.nextInt();
+                        System.out.println(AQLAccessSearchs.getAnimalsById(ID));
 
+                    } catch (Exception e) {
+                        System.err.println("Error: " + e.getMessage());
+                    }
+                    break;
 
+                case "2":
+                    try {
+                        System.out.println("Ingrese el nombre del animal que desea buscar: ");
+                        String nombre = sc.nextLine();
+                        System.out.println(AQLAccessSearchs.getAnimalsByName(nombre));
 
+                    } catch (Exception e) {
+                        System.err.println("Error: " + e.getMessage());
+                    }
+                    break;
+
+                case "3":
+                    try {
+                        System.out.println("Ingrese el id del animal que desea buscar: ");
+                        int age = sc.nextInt();
+                        System.out.println(AQLAccessSearchs.getAnimalsByAge(age));
+
+                    } catch (Exception e) {
+                        System.err.println("Error: " + e.getMessage());
+                    }
+                    break;
+
+                case "4":
+                    try {
+                        System.out.println("Ingrese el tiempo (contamos en meses) que ha pasado el animal que desea buscar: ");
+                        int month = sc.nextInt();
+                        List<Animals> animals = AQLAccessSearchs.getAnimalsByTimeDate(month);
+                        for (Animals a : animals) {
+                            System.out.println(a);
+                        }
+
+                    } catch (Exception e) {
+                        System.err.println("Error: " + e.getMessage());
+                    }
+
+                    break;
+
+                case "5":
+                    break;
+
+                case "6":
+                    break;
+
+                case "0":
+                    break;
+
+            }
+
+        } while (!option.equals("0"));
+
+        return option;
 
     }
+
+
+
+
+
+
+
 
     static List<Animals> animals = SQLAcces.getAnimales();
 

@@ -58,6 +58,14 @@ public class MenuShetler {
 
                     break;
                 case "5":
+                    try {
+
+
+
+
+                    }catch (Exception e){
+                        System.err.println("Error: " + e.getMessage());
+                    }
 
 
                     break;
@@ -152,6 +160,8 @@ public class MenuShetler {
     }
 
 
+
+    // Menus
     private static String Submenu(Scanner sc) {
         String option;
         do {
@@ -301,6 +311,7 @@ public class MenuShetler {
 
 
 
+    //Elejir listas
 
     static List<Animals> animals = SQLAcces.getAnimales();
 
@@ -400,6 +411,11 @@ public class MenuShetler {
         } while (option < 1 || option > animals.size());
 
         return animals.get(option - 1).getSpecies_id();
+    }
+
+    public static int ElejirAnimalParaAdocion() {
+        List<Animals> animals = SQLAcces.();
+
     }
 
 

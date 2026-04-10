@@ -92,6 +92,7 @@ public class SQLAcces {
 
     public static void AnimalsForAdotion(){
 
+        List<Animals> animals = new LinkedList<>();
         String SQLAnimalsForAdoption = """
                 select an.pet_name, s.species, an.age, an.gender, an.arrival_date
                 from animals an
@@ -114,10 +115,10 @@ public class SQLAcces {
                 Date Arrival_date = resultSet.getDate(5);
                 LocalDate localDate = Arrival_date.toLocalDate();
 
+
                 System.out.println('[' + "Nombre= " +  pet_name + " | " + "Tipo= " +
                         species + " | " + "Edad= " + age + " años | " + "Genero= " +
                         gender + " | " + "Fecha de llegada= " + localDate + ']');
-
             }
 
         } catch (SQLException e) {
@@ -247,9 +248,9 @@ public class SQLAcces {
 
 
 
-    public static void addAnimals(Animals a, int animalId, int adopterId, int staffId){
+    public static void addAnimals(int animalId, int adopterId, int staffId){
 
-        String SQLGetIfAdopted = "Select adopted from animals where animal_id = ?";
+        String SQLNoAdopted = "select adopted from animals where animalId = ?";
         String SQLAdoptionTable = """
                 insert into adoptions(animal_id, adopter_id, adoption_date, staff_id)
                 values (?,?,curdate(),?)""";
@@ -257,20 +258,23 @@ public class SQLAcces {
 
 
         try (Connection connection = SQLManager.getConnection();
-            PreparedStatement statement = connection.prepareStatement(SQLGetIfAdopted)){
+             PreparedStatement statement = connection.prepareStatement(SQLNoAdopted)) {
 
             statement.setInt(1, animalId);
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 boolean adopted = resultSet.getBoolean(1);
                 if (adopted = true) {
                     System.out.println("Este animal ya esta adoptado");
+                }else {
+                    System.out.println("Este animal no esta adoptado");
                 }
-            }else {
-                System.out.println("No existe ese animal");
+                return;
             }
 
-        } catch (SQLException e) {
+
+
+        }catch (Exception e){
             throw new RuntimeException(e);
         }
 
@@ -288,7 +292,7 @@ public class SQLAcces {
         }
 
         try (Connection connection = SQLManager.getConnection();
-             PreparedStatement statement = connection.prepareStatement(SQLGetIfAdopted)){
+             PreparedStatement statement = connection.prepareStatement(SQlActualizarAnimals)){
 
             statement.setInt(1, animalId);
             statement.executeUpdate();

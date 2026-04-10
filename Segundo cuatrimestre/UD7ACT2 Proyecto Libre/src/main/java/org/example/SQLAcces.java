@@ -195,20 +195,11 @@ public class SQLAcces {
         List<Staff> staff = new LinkedList<>();
 
         String SQLSeeStaff = "select staff_id, birth_date, first_name, last_name, gender, hire_date, work_role  from staff where work_role = 'cuidador' and staff_id is not null";
-//        "select staff_id, first_name, last_name  from staff where work_role = 'cuidador'";
-//        "select staff_id, birth_date, first_name, last_name, gender, hire_date, work_role  from staff where work_role = 'cuidador' and staff_id is not null "
         try (Connection connection = SQLManager.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(SQLSeeStaff)){
 
 
-//            while (resultSet.next()){
-//                staff.add(new Staff(resultSet.getInt(1),
-//                        resultSet.getString(2),
-//                        resultSet.getString(3)));
-//
-//
-//            }
 
             while (resultSet.next()) {
                 int id = resultSet.getInt(1);
@@ -233,6 +224,84 @@ public class SQLAcces {
         return staff;
     }
 
+
+    public static int deleteAnimals(int animal_id){
+        int response = -1;
+
+        String SQLDeleteAnimals = "delete from animals where animal_id = ?";
+
+        try (Connection connection = SQLManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SQLDeleteAnimals)){
+
+            statement.setInt(1, animal_id);
+            response = statement.executeUpdate();
+            System.out.println("Animals eliminado con exito");
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return response;
+    }
+
+
+
+    public static void addAnimals(Animals a, int animalId, int adopterId, int staffId){
+
+        String SQLGetIfAdopted = "Select adopted from animals where animal_id = ?";
+        String SQLAdoptionTable = """
+                insert into adoptions(animal_id, adopter_id, adoption_date, staff_id)
+                values (?,?,curdate(),?)""";
+        String SQlActualizarAnimals = "update animals set adopted = true where animal_id = ?";
+
+
+        try (Connection connection = SQLManager.getConnection();
+            PreparedStatement statement = connection.prepareStatement(SQLGetIfAdopted)){
+
+            statement.setInt(1, animalId);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                boolean adopted = resultSet.getBoolean(1);
+                if (adopted = true) {
+                    System.out.println("Este animal ya esta adoptado");
+                }
+            }else {
+                System.out.println("No existe ese animal");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        try (Connection connection = SQLManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SQLAdoptionTable)){
+
+            statement.setInt(1, animalId);
+            statement.setInt(2, adopterId);
+            statement.setInt(4,staffId);
+
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        try (Connection connection = SQLManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SQLGetIfAdopted)){
+
+            statement.setInt(1, animalId);
+            statement.executeUpdate();
+
+            System.out.println("Animal adoptado con exito");
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
 
 
 

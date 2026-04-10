@@ -154,6 +154,78 @@ public class AQLAccessSearchs {
 
 
 
+    public static List<Animals> getAnimalsByGender(Gender gender){
+        List<Animals> animals = new LinkedList<>();
+
+        String SqlAnimalsByName = "select * from animals where gender = ?";
+
+        try (Connection connection = SQLManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SqlAnimalsByName)){
+
+            statement.setInt(1, gender.ordinal());
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+
+                int id = resultSet.getInt(1);
+                String pet_name = resultSet.getString(2);
+                int species_id = resultSet.getInt(3);
+                int age = resultSet.getInt(4);
+                Gender genders = Gender.valueOf(resultSet.getString((5)));
+                Date arrival_date = resultSet.getDate(6);
+                LocalDate localDate = arrival_date.toLocalDate();
+                int caretaker = resultSet.getInt(7);
+                boolean adopted = resultSet.getBoolean(8);
+
+                animals.add(new Animals(id, pet_name, species_id,  age, genders, localDate, caretaker, adopted));
+
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+
+        return animals;
+
+    }
+
+    public static List<Animals> getAnimalsBySpecies(int ID_specie){
+        List<Animals> animals = new LinkedList<>();
+
+        String SqlAnimalsByName = "select * from animals where species = ?";
+
+        try (Connection connection = SQLManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SqlAnimalsByName)){
+
+            statement.setInt(1, ID_specie);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+
+                int id = resultSet.getInt(1);
+                String pet_name = resultSet.getString(2);
+                int species_id = resultSet.getInt(3);
+                int age = resultSet.getInt(4);
+                Gender genders = Gender.valueOf(resultSet.getString((5)));
+                Date arrival_date = resultSet.getDate(6);
+                LocalDate localDate = arrival_date.toLocalDate();
+                int caretaker = resultSet.getInt(7);
+                boolean adopted = resultSet.getBoolean(8);
+
+                animals.add(new Animals(id, pet_name, species_id,  age, genders, localDate, caretaker, adopted));
+
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+
+        return animals;
+
+    }
+
+
+
 
 
 }

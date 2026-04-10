@@ -202,6 +202,8 @@ public class MenuShetler {
                 """;
 
         do {
+            sc = new Scanner(System.in);
+
             System.out.println(subMenu);
             option = sc.nextLine();
             switch (option) {

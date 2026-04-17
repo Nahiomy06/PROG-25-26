@@ -4,12 +4,29 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
+/**
+ * Clase principal que ejecuta el sistema de gestión de inventario.
+ * <p>
+ * Proporciona una interfaz de línea de comandos (CLI) que permite al usuario interactuar
+ * con la base de datos de productos mediante un menú de opciones.
+ * </p>
+ * * @author Nahiomy
+ * @version 1.0
+ */
 public class Main {
     public static void main(String[] args) {
 
+        /**
+         * Punto de entrada principal de la aplicación.
+         * <p>
+         * Inicializa la configuración de la base de datos, establece la conexión y gestiona
+         * el bucle principal del menú (do-while) para procesar las peticiones del usuario.
+         * </p>
+         * * @param args Argumentos de la línea de comandos (no utilizados).
+         */
         try {
+
             SQLManager.CargarConnection();
             Connection conn = SQLManager.getConnection();
             if (conn != null) {
@@ -20,7 +37,18 @@ public class Main {
         }
 
 
-
+        /**
+         * El menu que es el orquestador del flujo de la aplicación.
+         * <p>
+         * El menú sigue un patrón de diseño de bucle de control (Control Loop).
+         * Las operaciones se dividen en tres categorías principales:
+         * </p>
+         * <ul>
+         * <li><b>Consultas (1-4):</b> Recuperación de datos desde la BD (lectura).</li>
+         * <li><b>Persistencia (5, 8):</b> Inserción de nuevos registros (escritura).</li>
+         * <li><b>Mantenimiento (6-7):</b> Modificación y borrado de registros existentes.</li>
+         * </ul>
+         */
         String Menu = """
                 
                 1. Mostrar todos los Productos en el Inventario.
@@ -47,6 +75,10 @@ public class Main {
 
 
             switch (opcion) {
+
+                /** * Opción 1: Listar inventario completo.
+                 * Llama a {@link SQLAccesManager#getProductos()} e imprime la lista.
+                 */
                 case "1":
 
                     try {
@@ -61,7 +93,11 @@ public class Main {
 
                     break;
 
+                /** * Opción 2: Búsqueda exacta por SKU/Referencia.
+                 * Útil para encontrar un producto único rápidamente.
+                 */
                 case "2":
+
                     try {
                         sc = new Scanner(System.in);
 
@@ -75,7 +111,10 @@ public class Main {
 
                     break;
 
+                /** * Opción 3: Filtrado por categoría técnica (ID de tipo).
+                 */
                 case "3":
+
                     try {
                         sc = new Scanner(System.in);
 
@@ -88,8 +127,11 @@ public class Main {
 
                     break;
 
-
+                /** * Opción 4: Filtrado por disponibilidad de stock.
+                 * Muestra productos con una cantidad igual o superior a la entrada.
+                 */
                 case "4":
+
                     try {
                         sc = new Scanner(System.in);
 
@@ -107,11 +149,17 @@ public class Main {
 
                     break;
 
+                /** * Opción 5: Registro de nuevas existencias.
+                 * Delega la captura de datos al metodo {@link #IngresarProducto()}.
+                 */
                 case "5":
                     IngresarProducto();
 
                     break;
 
+                /** * Opción 6: Borrado físico de registros.
+                 * Elimina el producto de la base de datos permanentemente mediante su referencia.
+                 */
                 case "6":
                     try {
                         System.out.println("Entre la referencia del producto que desea eliminar: ");
@@ -124,11 +172,17 @@ public class Main {
 
                     break;
 
+                /** * Opción 7: Modificación de atributos.
+                 * Permite editar campos dinámicos (precio, stock, etc.) mediante {@link #ActualizarProducto(Scanner)}.
+                 */
                 case "7":
                     ActualizarProducto(sc);
 
                     break;
 
+                /** * Opción 8: Gestión de categorías.
+                 * Permite ampliar el catálogo de tipos de productos disponibles.
+                 */
                 case "8":
 
                     try {
@@ -145,6 +199,9 @@ public class Main {
 
                     break;
 
+                /** * Opción 9: Finalización.
+                 * Rompe el bucle y cierra la ejecución del programa.
+                 */
                 case "9":
                     System.out.println("Saliendo...");
 
@@ -159,6 +216,14 @@ public class Main {
 
     }
 
+    /**
+     * Solicita al usuario los datos necesarios para crear un nuevo producto.
+     * <p>
+     * Captura los datos desde la consola y crea una instancia de {@link producto}
+     * para enviarla al {@link SQLAccesManager}.
+     * </p>
+     * * @see SQLAccesManager#InsertarProducto(producto)
+     */
     private static void IngresarProducto() {
         try {
 
@@ -192,6 +257,15 @@ public class Main {
         }
     }
 
+    /**
+     * Solicita al usuario los valores actualizados de un producto existente.
+     * <p>
+     * El producto se identifica mediante su ID numérico. Se permite modificar
+     * la descripción, cantidad, precio y política de descuentos.
+     * </p>
+     * * @param sc El objeto {@link Scanner} activo para la lectura de datos.
+     * @see SQLAccesManager#ActualizarProducto(String, int, double, int, boolean, int)
+     */
     private static void ActualizarProducto(Scanner sc) {
         try {
 

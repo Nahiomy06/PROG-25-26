@@ -33,5 +33,9 @@
 .add-btn {
     -fx-background-color: #ffffff;
     -fx-background-radius: 100;
+}
 
+.free-delivery-card {
+    -fx-background-color: #D3D3D3;
+    -fx-background-radius: 30;
 }

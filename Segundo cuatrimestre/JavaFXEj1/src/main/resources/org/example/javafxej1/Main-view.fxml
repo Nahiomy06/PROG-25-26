@@ -1,64 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="182.0" prefWidth="202.0" spacing="20.0" style="-fx-background-color: #FFFDE6;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxej1.MainControler">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-   <StackPane prefHeight="150.0" prefWidth="200.0">
-      <children>
-         <Circle radius="100.0" strokeType="INSIDE">
-            <fill>
-               <LinearGradient endX="0.37914691943127965" endY="1.0">
-                  <stops>
-                     <Stop>
-                        <color>
-                           <Color red="0.2368421107530594" green="0.09100877493619919" blue="0.09100877493619919" />
-                        </color>
-                     </Stop>
-                     <Stop offset="1.0">
-                        <color>
-                           <Color red="0.6196078658103943" green="0.007843137718737125" blue="1.0" />
-                        </color>
-                     </Stop>
-                  </stops>
-               </LinearGradient>
-            </fill>
-            <stroke>
-               <LinearGradient endX="1.0" endY="1.0">
-                  <stops>
-                     <Stop>
-                        <color>
-                           <Color red="0.6892544031143188" green="0.07236842066049576" blue="0.7105262875556946" />
-                        </color>
-                     </Stop>
-                     <Stop offset="1.0">
-                        <color>
-                           <Color red="1.0" green="1.0" blue="1.0" />
-                        </color>
-                     </Stop>
-                  </stops>
-               </LinearGradient>
-            </stroke>
-         </Circle>
-      </children>
-   </StackPane>
-
-    <Label fx:id="welcomeText" />
-    <Button alignment="CENTER" onAction="#onHelloButtonClick" style="-fx-background-color: #9e02ff;" text="0w0" textFill="RED" />
-   <DatePicker promptText="Pick a date" style="-fx-background-color: #9e02ff;" />
-   <cursor>
-      <Cursor fx:constant="DEFAULT" />
-   </cursor>
-</VBox>
+<AnchorPane maxHeight="640.0" maxWidth="640.0" minHeight="640.0" minWidth="640.0" prefHeight="640.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.JavaFXEj1.HelloController">
+   <children>
+      <TilePane layoutX="101.0" layoutY="32.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Button id="holaBoton" fx:id="bottonhola" maxWidth="190.0" minWidth="40.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="190.0" style="-fx-background-color: black;" text="Hola" textAlignment="CENTER" textFill="#b555ff">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <TilePane.margin>
+                  <Insets top="20.0" />
+               </TilePane.margin>
+            </Button>
+            <Button id="holaBoton" fx:id="bottonhola1" maxWidth="190.0" minWidth="40.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="190.0" style="-fx-background-color: black;" text="Hola" textAlignment="CENTER" textFill="#b555ff">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <TilePane.margin>
+                  <Insets top="20.0" />
+               </TilePane.margin>
+            </Button>
+            <Button id="holaBoton" fx:id="bottonhola2" maxWidth="190.0" minWidth="40.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="190.0" style="-fx-background-color: black;" text="Hola" textAlignment="CENTER" textFill="#b555ff">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <TilePane.margin>
+                  <Insets top="20.0" />
+               </TilePane.margin>
+            </Button>
+            <Button id="holaBoton" fx:id="bottonhola3" maxWidth="190.0" minWidth="40.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="190.0" style="-fx-background-color: black;" text="Hola" textAlignment="CENTER" textFill="#b555ff">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <TilePane.margin>
+                  <Insets top="20.0" />
+               </TilePane.margin>
+            </Button>
+         </children>
+      </TilePane>
+      <ListView layoutX="377.0" layoutY="226.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" />
+      <Slider layoutX="201.0" layoutY="501.0" />
+      <ColorPicker layoutX="132.0" layoutY="389.0">
+         <value>
+            <Color red="0.6973684430122375" />
+         </value>
+      </ColorPicker>
+      <Label fx:id="welcomeText" layoutX="395.0" layoutY="50.0" text="Holaaaaaaaaaaa" />
+      <Button fx:id="ButtonHelo" layoutX="455.0" layoutY="125.0" mnemonicParsing="false" onAction="#onHelloButtonClick" text="Button" />
+   </children>
+</AnchorPane>

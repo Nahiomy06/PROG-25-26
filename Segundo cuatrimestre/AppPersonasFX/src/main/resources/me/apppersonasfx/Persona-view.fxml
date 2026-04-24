@@ -1,16 +1,291 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="me.apppersonasfx.PersonasController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<AnchorPane fx:id="MainPanel" maxHeight="640.0" maxWidth="640.0" minHeight="640.0" minWidth="640.0" prefHeight="640.0" prefWidth="640.0" stylesheets="@Styles/style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.apppersonasfx.PersonasController">
+   <children>
+      <AnchorPane fx:id="MainView" prefHeight="640.0" prefWidth="640.0" styleClass="my-background" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" layoutX="137.0" layoutY="33.0" prefHeight="100.0" prefWidth="367.0" AnchorPane.topAnchor="33.0">
+               <children>
+                  <Text fill="#4e235b" strokeType="OUTSIDE" strokeWidth="0.0" text="App de gestión de personas" textAlignment="CENTER">
+                     <font>
+                        <Font name="Cambria Bold" size="26.0" />
+                     </font>
+                  </Text>
+               </children>
+               <styleClass>
+                  <String fx:value="title_background" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </HBox>
+            <HBox layoutX="46.0" layoutY="177.0" styleClass="main_background">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="367.0" prefWidth="240.0">
+                     <children>
+                        <Button fx:id="btnInsertar" alignment="CENTER" mnemonicParsing="false" onAction="#onbtnInserarClick" prefHeight="40.0" prefWidth="140.0" text="Insertar" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Bold" size="24.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="btn_main" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="btnListado" alignment="CENTER" mnemonicParsing="false" onAction="#onbtnListadoClick" prefHeight="40.0" prefWidth="140.0" text="Listado" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Bold" size="24.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="btn_main" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="btnBuscar" alignment="CENTER" mnemonicParsing="false" onAction="#onbtnBuscarClick" prefHeight="40.0" prefWidth="140.0" text="Buscar" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Bold" size="24.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="btn_main" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="btnSalir" alignment="CENTER" mnemonicParsing="false" onAction="#onbtnSalirClick" prefHeight="40.0" prefWidth="140.0" text="Salir" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Bold" size="24.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="btn_main" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  <ImageView fitHeight="372.0" fitWidth="312.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                     <image>
+                        <Image url="@Img/Gemini_Generated_Image_2ph7qt2ph7qt2ph7-Photoroom.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="40.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="formView" maxHeight="640.0" maxWidth="640.0" minHeight="640.0" minWidth="640.0" prefHeight="640.0" prefWidth="640.0" styleClass="my-background" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" layoutX="137.0" layoutY="40.0" prefHeight="66.0" prefWidth="367.0" AnchorPane.topAnchor="40.0">
+               <children>
+                  <Text fx:id="laabelFormTitle" fill="#4e235b" strokeType="OUTSIDE" strokeWidth="0.0" text="Insertar una persona" textAlignment="CENTER">
+                     <font>
+                        <Font name="Cambria Bold" size="26.0" />
+                     </font>
+                  </Text>
+               </children>
+               <styleClass>
+                  <String fx:value="title_background" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </HBox>
+            <VBox alignment="CENTER" layoutX="70.0" layoutY="120.0" prefHeight="478.0" prefWidth="509.0" AnchorPane.bottomAnchor="30.0" AnchorPane.topAnchor="120.0">
+               <padding>
+                  <Insets bottom="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="238.0" spacing="20.0" styleClass="shadow">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" maxWidth="100.0" prefWidth="100.0" text="Dni: " textAlignment="RIGHT">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="TFDni" promptText="12345678T" styleClass="my_text_field">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="238.0" spacing="20.0" styleClass="shadow">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" maxWidth="100.0" prefWidth="100.0" text="Nombre: " textAlignment="RIGHT">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="TFNombre" promptText="Tom" styleClass="my_text_field">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="238.0" spacing="20.0" styleClass="shadow">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" maxWidth="100.0" prefWidth="100.0" text="Apellido:" textAlignment="RIGHT">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="TFApellido" promptText="Cruise" styleClass="my_text_field">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="238.0" spacing="20.0" styleClass="shadow">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" maxWidth="100.0" prefWidth="100.0" text="Email:" textAlignment="RIGHT">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="TFEmail" promptText="asd@gmail.com" styleClass="my_text_field">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="238.0" spacing="20.0" styleClass="shadow">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" maxWidth="100.0" prefWidth="100.0" text="Edad:" textAlignment="RIGHT">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="TFEdad" promptText="23" styleClass="my_text_field">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="238.0" spacing="20.0" styleClass="shadow">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" maxWidth="100.0" prefWidth="100.0" text="Telefonó: " textAlignment="RIGHT">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="TFTelefono" promptText="123 56 56 78" styleClass="my_text_field">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="507.0">
+                     <children>
+                        <Button fx:id="btnGuardar" alignment="CENTER" mnemonicParsing="false" onAction="#onbtnGuardarClick" prefHeight="35.0" prefWidth="100.0" text="Guardar" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Bold" size="20.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="btn_main" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Button>
+                        <Button fx:id="btnCancelar" alignment="CENTER" mnemonicParsing="false" onAction="#onbtnCancelarClick" prefHeight="35.0" prefWidth="100.0" text="Cancelar" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Bold" size="20.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="btn_main" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <styleClass>
+                  <String fx:value="main_background" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

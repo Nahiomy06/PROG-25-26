@@ -1,0 +1,71 @@
+.my-background{
+    -fx-background-color: #FED8FF;
+}
+
+.title_background{
+    -fx-background-color: #fef8ff;
+    -fx-background-radius: 30;
+    -fx-border-color: #efa9ff;
+    -fx-border-radius: 30;
+}
+
+.main_background{
+    -fx-background-color: #fef8ff;
+    -fx-background-radius: 30;
+    -fx-border-color: #efa9ff;
+    -fx-border-radius: 30;
+}
+
+.btn_main{
+    -fx-background-color: #ee85f5;
+    -fx-background-radius: 30;
+    -fx-border-color: #e86ef1;
+    -fx-border-radius: 30;
+}
+.btn_main:hover{
+    -fx-background-color: #9446cd;
+    -fx-background-radius: 30;
+    -fx-cursor: hand;
+}
+.shadow {
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 5.0, 0.0, 0.0, 5.0);
+}
+
+.my_text_field{
+    -fx-background-color: white;
+    -fx-background-radius: 30;
+    -fx-border-color: #efa9ff;
+    -fx-border-radius: 30;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

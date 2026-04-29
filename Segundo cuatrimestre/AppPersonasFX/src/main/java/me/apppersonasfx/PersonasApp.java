@@ -13,6 +13,7 @@ public class PersonasApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(PersonasApp.class.getResource("Persona-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 640, 640);
         stage.setTitle("App administración Personas");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }

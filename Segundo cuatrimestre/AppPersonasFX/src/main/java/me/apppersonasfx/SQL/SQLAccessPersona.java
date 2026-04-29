@@ -115,7 +115,7 @@ public class SQLAccessPersona {
         return p;
     }
 
-    public boolean createPersona(Persona persona) {
+    public static boolean createPersona(Persona persona) {
         boolean status = false;
 
         String sqlInsertPersona = "Insert into person(dni, name, surname, email, age, phone) values(?,?,?,?,?,?)";
@@ -140,7 +140,7 @@ public class SQLAccessPersona {
         return status;
     }
 
-    public boolean updatePersona(Persona persona) {
+    public static boolean updatePersona(Persona persona) {
         boolean status = false;
 
         String sqlUpdatePersona = "UPDATE person SET name = ?, surname = ?," +
@@ -169,7 +169,7 @@ public class SQLAccessPersona {
         return status;
     }
 
-    public boolean deleteByDni(String dni) {
+    public static boolean deleteByDni(String dni) {
         boolean status = false;
 
         String sqlDeletePersona = "DELETE FROM personas WHERE dni = ?";

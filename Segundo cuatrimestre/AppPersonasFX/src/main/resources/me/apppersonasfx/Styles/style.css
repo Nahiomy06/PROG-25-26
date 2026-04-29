@@ -1,5 +1,11 @@
 .my-background{
-    -fx-background-color: #FED8FF;
+    -fx-background-color: #efc9f4;
+}
+
+.my-title-view{
+    -fx-text-fill: #4e235b;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
 }
 
 .title_background{
@@ -21,6 +27,10 @@
     -fx-background-radius: 30;
     -fx-border-color: #e86ef1;
     -fx-border-radius: 30;
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
 }
 .btn_main:hover{
     -fx-background-color: #9446cd;
@@ -37,6 +47,17 @@
     -fx-border-color: #efa9ff;
     -fx-border-radius: 30;
 
+}
+
+.text-field.Error {
+    -fx-border-color: #ea7474;
+    -fx-border-radius: 30;
+    -fx-border-width: 2;
+    -fx-background-color: #FFECEC;
+}
+
+.text-field.Error:focused {
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 5.0, 0.0, 0.0, 5.0);
 }
 
 

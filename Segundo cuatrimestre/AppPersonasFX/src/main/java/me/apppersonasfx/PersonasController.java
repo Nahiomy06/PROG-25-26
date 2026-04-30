@@ -8,13 +8,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import me.apppersonasfx.SQL.SQLAccessPersona;
 import me.apppersonasfx.model.Persona;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -22,9 +25,21 @@ public class PersonasController implements Initializable {
 
     private Persona pp;
     private ObservableList<Persona> personas = FXCollections.observableArrayList();
+    private boolean IsNewPerson = false;
 
     @FXML
     private Button btnGuardar;
+
+    @FXML
+    private Button btnEditarList;
+
+    @FXML
+    private Button btnEliminarList;
+
+    @FXML
+    private Button btnCancelarList;
+
+
 
     private boolean isDniValido = false, isNombreValido = false, isApellidoValido = false,
             isEmailValido = false, isEdadValido = false, isTelefonoValido = false;
@@ -45,6 +60,10 @@ public class PersonasController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //que se ejecute la pagina principal
         this.SelectPanelVisible(0);
+
+        this.btnEditarList.setDisable(true);
+        this.btnEliminarList.setDisable(true);
+        this.btnCancelarList.setDisable(false);
 
         // Insertar listeners de Focus textFields
 
@@ -172,6 +191,18 @@ public class PersonasController implements Initializable {
         });
 
 
+
+        this.listViewPersonas.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            this.pp = newValue;
+            if (newValue != null) {
+                this.btnEliminarList.setDisable(false);
+                this.btnEditarList.setDisable(false);
+            }else {
+                this.btnEditarList.setDisable(true);
+                this.btnEliminarList.setDisable(true);
+            }
+        });
+
     }
 
 
@@ -179,11 +210,15 @@ public class PersonasController implements Initializable {
     //BOTONES main
     @FXML
     public void onbtnInserarClick(ActionEvent actionEvent) {
+
+        this.IsNewPerson = true;
+        configutrFormView();
         this.SelectPanelVisible(1);
     }
 
     @FXML
     public void onbtnListadoClick(ActionEvent actionEvent) {
+        this.loadPersonInListView();
         this.SelectPanelVisible(2);
     }
 
@@ -206,29 +241,67 @@ public class PersonasController implements Initializable {
         this.clearTFCamps();
     }
 
+    @FXML
     public void onbtnGuardarClick(ActionEvent actionEvent) {
 
-        try {
-            this.pp = Persona.builder()
-                    .dni(this.TFDni.getText())
-                    .name(this.TFNombre.getText())
-                    .surname(this.TFApellido.getText())
-                    .email(this.TFEmail.getText())
-                    .age(Integer.parseInt(this.TFEdad.getText()))
-                    .phone(this.TFTelefono.getText())
-                    .build();
-            if (SQLAccessPersona.createPersona(pp)) {
-                this.clearTFCamps();
-                this.formView.setVisible(false);
-                this.MainView.setVisible(true);
+        this.pp = Persona.builder()
+                .dni(this.TFDni.getText())
+                .name(this.TFNombre.getText())
+                .surname(this.TFApellido.getText())
+                .email(this.TFEmail.getText())
+                .age(Integer.parseInt(this.TFEdad.getText()))
+                .phone(this.TFTelefono.getText())
+                .build();
+
+        if (this.IsNewPerson) {
+            try {
+                if (SQLAccessPersona.createPersona(pp)) {
+                    this.clearTFCamps();
+                    this.formView.setVisible(false);
+                    this.MainView.setVisible(true);
+                }
+            }catch (Exception e) {
+                System.err.println("Error al guardar");
             }
-        } catch (NumberFormatException e) {
-            this.TFEdad.setText("");
-            this.TFEdad.setPromptText("Introduce un numero");
-        } catch (Exception e) {
-            System.err.println("Error al guardar");
+        } else {
+            try {
+
+                if (SQLAccessPersona.updatePersona(pp)) {
+                    this.clearTFCamps();
+                    this.formView.setVisible(false);
+                    this.MainView.setVisible(true);
+                }
+            }catch (Exception e) {
+                System.err.println("Error al guardar");
+            }
+
         }
+
     }
+
+    //List
+
+    @FXML
+    public void onbtnEditarListClick(ActionEvent actionEvent) {
+        //Cargar datos en el form y configurar
+        this.IsNewPerson = false;
+        configutrFormView();
+        this.SelectPanelVisible(1);
+
+
+    }
+    @FXML
+    public void onbtnEliminarListClick(ActionEvent actionEvent) {
+        SQLAccessPersona.deleteByDni(this.pp.getDni());
+        this.loadPersonInListView();
+    }
+    @FXML
+    public void onbtnCancelarListClick(ActionEvent actionEvent) {
+        this.SelectPanelVisible(0);
+
+    }
+
+
 
     private void clearTFCamps() {
         this.TFDni.setText("");
@@ -272,16 +345,28 @@ public class PersonasController implements Initializable {
     private TextField TFEdad;
     @FXML
     private TextField TFTelefono;
+    @FXML
+    private Text labelFormTitle;
 
 
 
+    public void loadPersonInListView(){
+        //Limpiar los datos anteriores de la ObservableList
+        this.personas.clear();
+        // LAmar al SQL
+        List<Persona> misPersonas = SQLAccessPersona.getAllPersonas();
+        //Cargo en el ObservableList
+        this.personas.addAll(misPersonas);
+        //Defino en el ListView los elementos (el ObservableList)
+        this.listViewPersonas.setItems(this.personas);
+    }
 
     private boolean validateDNI(String dni) {
         return dni.matches("^[0-9]{8}[A-Za-z]$");
     }
 
     private boolean validateAge(String age) {
-        return age.matches("[1-9]{1,3}");
+        return age.matches("[0-9]{1,3}");
     }
 
     private boolean validateEmail(String email) {
@@ -289,7 +374,7 @@ public class PersonasController implements Initializable {
     }
 
     private boolean validateTelefono(String telefono) {
-        return telefono.matches("[1-9]{9}");
+        return telefono.matches("[6-9]{1}[0-9]{8}");
     }
 
     private boolean validateName(String name) {
@@ -325,23 +410,26 @@ public class PersonasController implements Initializable {
         }
     }
 
+    private void configutrFormView(){
+        if (IsNewPerson ){
+            this.labelFormTitle.setText("Ingresar Persona");
+        }else {
+            this.labelFormTitle.setText("Actualizar Persona");
+            if (pp != null){
+                this.TFDni.setPromptText(pp.getDni());
+                this.TFNombre.setPromptText(pp.getName());
+                this.TFApellido.setPromptText(pp.getSurname());
+                this.TFEmail.setPromptText(pp.getEmail());
+                this.TFEdad.setPromptText(String.valueOf(pp.getAge()));
+                this.TFTelefono.setPromptText(pp.getPhone());
 
+            }
 
-
-
-    //List
-
-    @FXML
-    public void onbtnEditarListClick(ActionEvent actionEvent) {
+        }
     }
-    @FXML
-    public void onbtnEliminarListClick(ActionEvent actionEvent) {
-    }
-    @FXML
-    public void onbtnCancelarListClick(ActionEvent actionEvent) {
-        this.SelectPanelVisible(0);
 
-    }
+
+
 
 
 

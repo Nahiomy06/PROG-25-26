@@ -12,7 +12,7 @@ public class SQLAccessPersona {
     public static List<Persona> getAllPersonas() {
         List<Persona> personas = new LinkedList<>();
 
-        String sqlAllPeople = "SELECT * FROM personas";
+        String sqlAllPeople = "SELECT * FROM person";
 
         try (Connection connection = SQLDataBaseManager.getConnection();
              Statement statement = connection.createStatement();
@@ -49,7 +49,7 @@ public class SQLAccessPersona {
 
         Persona p = null;
 
-        String sqlSelectID = "SELECT * FROM personas WHERE dni = ?";
+        String sqlSelectID = "SELECT * FROM person WHERE dni = ?";
 
         try (Connection connection = SQLDataBaseManager.getConnection();
             PreparedStatement Statement = connection.prepareStatement(sqlSelectID)){
@@ -85,7 +85,7 @@ public class SQLAccessPersona {
     public static Persona getPersonaByEmail(String email) {
         Persona p = null;
 
-        String sqlSelectID = "SELECT * FROM personas WHERE email = ?";
+        String sqlSelectID = "SELECT * FROM person WHERE email = ?";
 
         try (Connection connection = SQLDataBaseManager.getConnection();
              PreparedStatement Statement = connection.prepareStatement(sqlSelectID)) {
@@ -172,7 +172,7 @@ public class SQLAccessPersona {
     public static boolean deleteByDni(String dni) {
         boolean status = false;
 
-        String sqlDeletePersona = "DELETE FROM personas WHERE dni = ?";
+        String sqlDeletePersona = "DELETE FROM person WHERE dni = ?";
 
         try (Connection connection = SQLDataBaseManager.getConnection();
         PreparedStatement Statement = connection.prepareStatement(sqlDeletePersona)){

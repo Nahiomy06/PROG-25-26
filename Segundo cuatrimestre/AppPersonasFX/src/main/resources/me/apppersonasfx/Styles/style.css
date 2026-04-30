@@ -4,7 +4,7 @@
 
 .my-title-view{
     -fx-text-fill: #4e235b;
-    -fx-font-size: 20;
+    -fx-font-size: 26;
     -fx-font-weight: bold;
 }
 
@@ -37,6 +37,22 @@
     -fx-background-radius: 30;
     -fx-cursor: hand;
 }
+
+.btn_main_Smaller{
+    -fx-background-color: #ee85f5;
+    -fx-background-radius: 30;
+    -fx-border-color: #e86ef1;
+    -fx-border-radius: 30;
+    -fx-text-fill: white;
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+.btn_main_Smaller:hover{
+    -fx-background-color: #9446cd;
+    -fx-background-radius: 30;
+    -fx-cursor: hand;
+}
 .shadow {
     -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 5.0, 0.0, 0.0, 5.0);
 }
@@ -60,6 +76,16 @@
     -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 5.0, 0.0, 0.0, 5.0);
 }
 
+.list-view{
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-text-overrun: true;
+}
+
+.list-view .list-cell{
+    -fx-text-fill: #4e235b;
+    -fx-font-size: 12;
+}
 
 
 

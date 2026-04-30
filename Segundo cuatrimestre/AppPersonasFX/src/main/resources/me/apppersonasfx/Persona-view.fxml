@@ -104,7 +104,7 @@
          <children>
             <HBox alignment="CENTER" layoutX="137.0" layoutY="40.0" prefHeight="70.0" prefWidth="370.0" AnchorPane.topAnchor="40.0">
                <children>
-                  <Text fx:id="laabelFormTitle" fill="#4e235b" strokeType="OUTSIDE" strokeWidth="0.0" text="Insertar una persona" textAlignment="CENTER">
+                  <Text fx:id="labelFormTitle" fill="#4e235b" strokeType="OUTSIDE" strokeWidth="0.0" text="Insertar una persona" textAlignment="CENTER">
                      <font>
                         <Font name="Cambria Bold" size="26.0" />
                      </font>
@@ -303,40 +303,107 @@
                   <String fx:value="shadow" />
                </styleClass>
             </HBox>
-            <VBox alignment="CENTER" layoutX="80.0" layoutY="150.0" prefHeight="460.0" prefWidth="480.0">
+            <VBox alignment="CENTER" layoutX="80.0" layoutY="150.0" prefHeight="460.0" prefWidth="480.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="150.0">
                <padding>
                   <Insets bottom="20.0" top="20.0" />
                </padding>
                <children>
-                  <ListView prefHeight="686.0" prefWidth="478.0" />
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                  <ListView fx:id="listViewPersonas" prefHeight="686.0" prefWidth="478.0">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin></ListView>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Button fx:id="btnEditarList" mnemonicParsing="false" onAction="#onbtnEditarListClick" prefHeight="35.0" prefWidth="100.0" text="Editar">
+                        <Button fx:id="btnEditarList" mnemonicParsing="false" onAction="#onbtnEditarListClick" prefHeight="35.0" prefWidth="90.0" text="Editar" textFill="WHITE">
                            <styleClass>
-                              <String fx:value="btn_main" />
+                              <String fx:value="btn_main_Smaller" />
                               <String fx:value="shadow" />
                            </styleClass>
                            <font>
-                              <Font name="Cambria Bold" size="20.0" />
+                              <Font name="Cambria Bold" size="16.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
                         </Button>
-                        <Button fx:id="btnEliminarList" mnemonicParsing="false" onAction="#onbtnEliminarListClick" prefHeight="35.0" prefWidth="100.0" text="Eliminar">
+                        <Button fx:id="btnEliminarList" mnemonicParsing="false" onAction="#onbtnEliminarListClick" prefHeight="35.0" prefWidth="90.0" text="Eliminar" textFill="WHITE">
                            <styleClass>
-                              <String fx:value="btn_main" />
+                              <String fx:value="btn_main_Smaller" />
                               <String fx:value="shadow" />
                            </styleClass>
                            <font>
-                              <Font name="Cambria Bold" size="20.0" />
+                              <Font name="Cambria Bold" size="16.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
                         </Button>
-                        <Button fx:id="btnCancelarList" mnemonicParsing="false" onAction="#onbtnCancelarListClick" prefHeight="35.0" prefWidth="100.0" text="Cancelar">
+                        <Button fx:id="btnCancelarList" mnemonicParsing="false" onAction="#onbtnCancelarListClick" prefHeight="35.0" prefWidth="90.0" text="Cancelar" textFill="WHITE">
                            <styleClass>
-                              <String fx:value="btn_main" />
+                              <String fx:value="btn_main_Smaller" />
                               <String fx:value="shadow" />
                            </styleClass>
                            <font>
-                              <Font name="Cambria Bold" size="20.0" />
+                              <Font name="Cambria Bold" size="16.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <styleClass>
+                  <String fx:value="main_background" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="640.0" prefWidth="640.0" styleClass="my-background">
+         <children>
+            <HBox alignment="CENTER" layoutX="135.0" layoutY="43.0" prefHeight="70.0" prefWidth="370.0" AnchorPane.topAnchor="40.0">
+               <children>
+                  <Text fill="#4e235b" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="my-title-view" text="Buscar persona" textAlignment="CENTER">
+                     <font>
+                        <Font name="Cambria Bold" size="26.0" />
+                     </font>
+                  </Text>
+               </children>
+               <styleClass>
+                  <String fx:value="title_background" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </HBox>
+            <VBox alignment="CENTER" layoutX="80.0" layoutY="138.0" prefHeight="460.0" prefWidth="480.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="150.0">
+               <padding>
+                  <Insets bottom="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <ListView fx:id="Search" prefHeight="686.0" prefWidth="478.0">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </ListView>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Button fx:id="btnCancelarSearch" mnemonicParsing="false" onAction="#onbtnCancelarListClick" prefHeight="35.0" prefWidth="90.0" text="Cancelar" textFill="WHITE">
+                           <styleClass>
+                              <String fx:value="btn_main_Smaller" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                           <font>
+                              <Font name="Cambria Bold" size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
                         </Button>
                      </children>
                      <padding>
